@@ -98,6 +98,10 @@
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marquee-track { animation: marquee 38s linear infinite; }
 
+  /* Hide scrollbar on mobile carousels (Live Campaigns) */
+  .mp-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .mp-scroll::-webkit-scrollbar { display: none; }
+
   /* Kinetic typography */
   .kt-word {
     display: inline-block;
@@ -477,11 +481,11 @@
         <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Guaranteed ROAS</div>
         <div class="mt-2 text-2xl sm:text-3xl font-medium tracking-tight text-brand-600">Always</div>
       </div>
-      <div class="card p-4 sm:p-5">
+      <div class="card p-4 sm:p-5 hidden sm:block">
         <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Platform fee</div>
         <div class="mt-2 text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-ink-900">£0</div>
       </div>
-      <div class="card p-4 sm:p-5">
+      <div class="card p-4 sm:p-5 hidden sm:block">
         <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Creator incentives</div>
         <div class="mt-2 text-base sm:text-lg font-medium tracking-tight text-ink-900 leading-tight">Leading commissions <span class="text-brand-600">+ fixed retainers</span></div>
       </div>
@@ -521,7 +525,7 @@
           Budget · Duration · <span class="text-ink-400 font-serif italic">Results.</span>
         </h2>
       </div>
-      <p class="text-ink-600 max-w-md text-[13px] leading-snug">
+      <p class="hidden sm:block text-ink-600 max-w-md text-[13px] leading-snug">
         Set your campaign budget, your duration, and your target <span class="text-brand-600 font-mono">ROAS</span> — see exactly what the brand pays and the creator earns.
       </p>
     </div>
@@ -743,7 +747,7 @@
             </div>
           </div>
 
-          <div class="mt-32 card p-6">
+          <div class="hidden md:block mt-32 card p-6">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div class="text-[12px] uppercase tracking-[0.18em] text-ink-500">Cumulative earnings simulation</div>
               <div class="flex items-center gap-4 text-[11px] text-ink-500">
@@ -815,7 +819,7 @@
         </div>
       </div>
 
-      <div class="mt-9 pt-6" style="border-top:1px solid rgba(38,79,203,0.10);">
+      <div class="hidden sm:block mt-9 pt-6" style="border-top:1px solid rgba(38,79,203,0.10);">
         <div class="flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.18em] text-ink-500">
           <div>Brand pays <span class="text-ink-800 font-medium">£0 upfront</span></div>
           <div>Creator paid <span class="text-ink-800 font-medium">fixed retainer</span></div>
@@ -837,7 +841,7 @@
           Live <span class="text-ink-400 font-serif italic">Campaigns.</span>
         </h2>
       </div>
-      <p class="text-ink-600 max-w-md text-[13px] leading-snug">
+      <p class="hidden sm:block text-ink-600 max-w-md text-[13px] leading-snug">
         Incentive driven marketing — results based, win win.
       </p>
     </div>
@@ -852,7 +856,11 @@
 
     <!-- ─── VAULTS panel ─── -->
     <div class="mt-3" id="mpanel-vaults">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="md:hidden mb-2 text-[10px] uppercase tracking-[0.22em] text-ink-400 flex items-center gap-1.5">
+        Swipe to browse
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="mp-scroll flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-px-5 -mx-5 md:mx-0 px-5 md:px-0 md:grid-cols-2 lg:grid-cols-3 gap-3 [&>article]:snap-start [&>article]:shrink-0 [&>article]:w-[85vw] [&>article]:max-w-[340px] md:[&>article]:w-auto md:[&>article]:max-w-none">
 
         <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
           <div class="flex items-center justify-between">
@@ -1336,7 +1344,7 @@
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 01</span>
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">lock</span>
           </div>
-          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 hidden sm:flex items-center justify-center text-brand-600">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
               <rect x="3.5" y="4.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/>
               <circle cx="11" cy="12" r="3.2" stroke="currentColor" stroke-width="1.5"/>
@@ -1355,7 +1363,7 @@
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 02</span>
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">agree</span>
           </div>
-          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 hidden sm:flex items-center justify-center text-brand-600">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
               <path d="M3 12l4-4 4 4M13 12l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M7 8v8a2 2 0 002 2h6a2 2 0 002-2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1373,7 +1381,7 @@
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 03</span>
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">fund</span>
           </div>
-          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 hidden sm:flex items-center justify-center text-brand-600">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
               <ellipse cx="12" cy="7"  rx="7" ry="2.6" stroke="currentColor" stroke-width="1.5"/>
               <path d="M5 7v5c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7" stroke="currentColor" stroke-width="1.5"/>
@@ -1391,7 +1399,7 @@
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 04</span>
             <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">settle</span>
           </div>
-          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 hidden sm:flex items-center justify-center text-brand-600">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
               <path d="M13 3L5 14h6l-1 7 9-12h-6l0-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
             </svg>
@@ -1428,7 +1436,7 @@
     </div>
 
     <div class="card-strong p-4 sm:p-6">
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div class="mp-scroll flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-4 sm:mx-0 px-4 sm:px-0 md:grid-cols-5 gap-3 [&>div]:snap-start [&>div]:shrink-0 [&>div]:w-[60vw] [&>div]:max-w-[200px] md:[&>div]:w-auto md:[&>div]:max-w-none">
 
         <div class="hairline rounded-xl p-4 bg-paper-50">
           <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
@@ -1511,45 +1519,45 @@
       </h2>
     </div>
     <div class="card divide-y divide-brand-500/10 overflow-hidden">
-      <details class="group p-6 open:bg-paper-50">
+      <details class="group p-4 sm:p-6 open:bg-paper-50">
         <summary class="flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[17px] tracking-tight text-ink-900">What can brands ask creators to do?</span>
+          <span class="text-[15px] sm:text-[17px] tracking-tight text-ink-900">What can brands ask creators to do?</span>
           <span class="text-ink-400 group-open:rotate-45 transition">+</span>
         </summary>
         <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
           Brands and creators agree on the deliverables before a campaign starts — post types (Reels, Shorts, TikToks, stories, long-form), posting frequency, brand guidelines (tone, do's &amp; don'ts, FTC-style disclosures), and the ROAS target. Once locked in, the agreement is binding for the full campaign duration. Brands can request reasonable revisions but cannot change scope mid-campaign without creator consent.
         </p>
       </details>
-      <details class="group p-6 open:bg-paper-50">
+      <details class="group p-4 sm:p-6 open:bg-paper-50">
         <summary class="flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[17px] tracking-tight text-ink-900">How does Backed pay the creator if the brand pays nothing upfront?</span>
+          <span class="text-[15px] sm:text-[17px] tracking-tight text-ink-900">How does Backed pay the creator if the brand pays nothing upfront?</span>
           <span class="text-ink-400 group-open:rotate-45 transition">+</span>
         </summary>
         <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
           Backed parks the deposit in low-volatility preferential shares to generate a yield that funds the creator's retainer and the platform. The brand never funds the creator out of pocket — and the principal stays whole, refundable within 60 days of cancellation.
         </p>
       </details>
-      <details class="group p-6 open:bg-paper-50">
+      <details class="group p-4 sm:p-6 open:bg-paper-50">
         <summary class="flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[17px] tracking-tight text-ink-900">What counts as a "verified sale"?</span>
+          <span class="text-[15px] sm:text-[17px] tracking-tight text-ink-900">What counts as a "verified sale"?</span>
           <span class="text-ink-400 group-open:rotate-45 transition">+</span>
         </summary>
         <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
           A webhook from your commerce provider (Shopify, Amazon, Stripe, etc.) marking an order as paid &amp; non-refunded after the return window. Refunds rebate the bounty back to principal.
         </p>
       </details>
-      <details class="group p-6 open:bg-paper-50">
+      <details class="group p-4 sm:p-6 open:bg-paper-50">
         <summary class="flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[17px] tracking-tight text-ink-900">Can the brand cancel a campaign?</span>
+          <span class="text-[15px] sm:text-[17px] tracking-tight text-ink-900">Can the brand cancel a campaign?</span>
           <span class="text-ink-400 group-open:rotate-45 transition">+</span>
         </summary>
         <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
           Yes — brands can cancel at any time. The campaign terminates 30 days after the cancellation notice (so the creator has 30 days of advance warning), and any unspent budget returns within a further 30 days. Total: 60 days from cancellation to a full refund (minus paid commissions).
         </p>
       </details>
-      <details class="group p-6 open:bg-paper-50">
+      <details class="group p-4 sm:p-6 open:bg-paper-50">
         <summary class="flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[17px] tracking-tight text-ink-900">What happens if the campaign over-performs?</span>
+          <span class="text-[15px] sm:text-[17px] tracking-tight text-ink-900">What happens if the campaign over-performs?</span>
           <span class="text-ink-400 group-open:rotate-45 transition">+</span>
         </summary>
         <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
@@ -1562,16 +1570,16 @@
 
 <!-- ───────────────────────── CTA ───────────────────────── -->
 <section id="cta" class="relative">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 pb-28">
-    <div class="card-strong relative overflow-hidden p-10 sm:p-16">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 pb-12 sm:pb-28">
+    <div class="card-strong relative overflow-hidden p-6 sm:p-16">
       <div class="absolute -top-32 -right-32 w-[420px] h-[420px] bg-brand-200/40 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute inset-0 bg-grid opacity-50 mask-fade-edges pointer-events-none"></div>
       <div class="relative max-w-3xl">
         <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Launch</div>
-        <h2 class="mt-3 text-5xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+        <h2 class="mt-3 text-3xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
           Stop spending on hope. <span class="text-ink-400 font-serif italic">Sponsor effective creators.</span>
         </h2>
-        <p class="mt-6 text-ink-600 text-[17px] leading-relaxed max-w-xl">
+        <p class="mt-5 sm:mt-6 text-ink-600 text-[15px] sm:text-[17px] leading-relaxed max-w-xl">
           Spin up your first campaign in under five minutes. Invite a creator. Watch verified revenue land.<br /><br />
           Register your interest and we will pair you with a suitable Creator / Brand.
         </p>
