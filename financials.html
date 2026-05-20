@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Backed Financials — Backed</title>
+<meta name="description" content="Live model of Backed's cash flow: AUM, yield, retainer costs and net platform margin across a sample portfolio of campaigns." />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%233B6AE8'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%233B6AE8'/%3E%3C/svg%3E" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          serif: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+        },
+        colors: {
+          paper: { 50:'#FBFCFE', 100:'#F4F7FB', 200:'#EAF0F8', 300:'#DDE6F2' },
+          ink:   { 900:'#0B1B33', 800:'#162844', 700:'#243A5C', 600:'#3A507A', 500:'#5B7196', 400:'#8195B5', 300:'#A8BAD3' },
+          brand: { 50:'#EEF4FF', 100:'#DCE7FF', 200:'#BDD0FF', 300:'#90B0FF', 400:'#5E8AF7', 500:'#3B6AE8', 600:'#264FCB', 700:'#1B3CA0' },
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root { color-scheme: light; }
+  html, body { background: #F4F7FB; }
+  body { font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #162844; }
+  ::selection { background: #BDD0FF; color: #0B1B33; }
+  .hairline { border: 1px solid rgba(38,79,203,0.10); }
+  .card {
+    background: #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.08);
+    border-radius: 22px;
+    box-shadow: 0 1px 2px rgba(11,27,51,0.04), 0 12px 32px -16px rgba(38,79,203,0.10);
+  }
+  .card-strong {
+    background:
+      radial-gradient(800px 320px at 0% 0%, rgba(59,106,232,0.06), transparent 60%),
+      #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.10);
+    border-radius: 28px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.7) inset,
+      0 2px 8px rgba(11,27,51,0.04),
+      0 30px 60px -30px rgba(38,79,203,0.18);
+  }
+  .dur-opt {
+    background: #FFFFFF;
+    color: #3A507A;
+    border: 1px solid rgba(38,79,203,0.10);
+    border-radius: 8px;
+    padding: 4px 4px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+  .dur-opt:hover { background: #EEF4FF; color: #1B3CA0; }
+  .dur-opt[data-active='true'] {
+    background: #3B6AE8;
+    color: #FFFFFF;
+    border-color: #3B6AE8;
+  }
+  /* Tier select (budget per row + bulk-apply in column headers) */
+  .tier-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.12);
+    border-radius: 8px;
+    padding: 5px 22px 5px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #243A5C;
+    cursor: pointer;
+    font-variant-numeric: tabular-nums;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%235B7196' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    transition: border-color 150ms ease, background-color 150ms ease;
+  }
+  .tier-select:hover { background-color: #EEF4FF; border-color: #BDD0FF; }
+  .tier-select:focus { outline: none; border-color: #3B6AE8; box-shadow: 0 0 0 3px rgba(59,106,232,0.14); }
+  .tier-select.bulk {
+    background-color: transparent;
+    border-color: rgba(38,79,203,0.20);
+    text-transform: none;
+    letter-spacing: 0;
+    color: #3A507A;
+    font-weight: 500;
+  }
+  .tier-select.bulk:hover { background-color: #EEF4FF; border-color: #3B6AE8; color: #1B3CA0; }
+  /* Editable text inputs blend in */
+  .text-edit {
+    background: transparent;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+    padding: 0;
+    border-radius: 4px;
+    transition: background 150ms ease, box-shadow 150ms ease;
+  }
+  .text-edit:hover { background: rgba(189,208,255,0.20); }
+  .text-edit:focus { background: rgba(189,208,255,0.30); box-shadow: 0 0 0 2px rgba(59,106,232,0.20); }
+  /* Info-dot with hover tooltip */
+  .info-dot {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px; height: 14px;
+    color: #8195B5;
+    cursor: help;
+    outline: none;
+  }
+  .info-dot:hover, .info-dot:focus { color: #3B6AE8; }
+  .info-tip {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    background: #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.12);
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 12px 32px -8px rgba(38,79,203,0.25);
+    font-size: 11.5px;
+    line-height: 1.45;
+    font-weight: 400;
+    color: #243A5C;
+    text-transform: none;
+    letter-spacing: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 150ms ease, visibility 150ms ease;
+    z-index: 30;
+    pointer-events: none;
+  }
+  .info-dot:hover .info-tip, .info-dot:focus .info-tip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Delete button */
+  .row-del {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    color: #8195B5;
+    background: transparent;
+    border: 1px solid transparent;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .row-del:hover { background: #FEF2F2; color: #DC2626; border-color: #FECACA; }
+</style>
+</head>
+<body class="bg-paper-100 text-ink-800 antialiased">
+
+<!-- Password lock -->
+<div id="lockScreen" class="fixed inset-0 z-[200] bg-paper-100 flex items-center justify-center px-4">
+  <div class="card-strong p-7 sm:p-9 w-full max-w-sm text-center">
+    <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Restricted</div>
+    <h2 class="mt-3 text-2xl font-medium tracking-[-0.02em] text-ink-900">Backed Financials</h2>
+    <p class="mt-3 text-sm text-ink-500">Enter the password to view this page.</p>
+    <form id="lockForm" class="mt-5 space-y-3">
+      <input id="lockPass" type="password" autocomplete="off" placeholder="Password"
+             class="w-full px-3 py-2.5 rounded-lg text-[15px] text-ink-900 bg-paper-50"
+             style="border:1px solid rgba(38,79,203,0.14);" />
+      <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
+        Unlock
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p id="lockErr" class="hidden text-xs text-rose-600">Wrong password — try again.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function lockGate() {
+  const KEY = 'backed-financials-auth';
+  const PASSWORD = 'bobby';
+  const screen = document.getElementById('lockScreen');
+  if (sessionStorage.getItem(KEY) === '1') {
+    screen.style.display = 'none';
+    return;
+  }
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('lockPass').focus(), 80);
+
+  document.getElementById('lockForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById('lockPass');
+    const err = document.getElementById('lockErr');
+    if (input.value.trim().toLowerCase() === PASSWORD) {
+      sessionStorage.setItem(KEY, '1');
+      screen.style.display = 'none';
+      document.body.style.overflow = '';
+    } else {
+      err.classList.remove('hidden');
+      input.value = '';
+      input.focus();
+    }
+  });
+})();
+</script>
+
+
+<header class="fixed top-0 inset-x-0 z-50">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 pt-4">
+    <div class="hairline rounded-2xl bg-white/80 backdrop-blur-xl flex items-center justify-between px-4 py-3 shadow-[0_8px_28px_-12px_rgba(38,79,203,0.18)]">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-brand-500"></span>
+        <span class="font-semibold tracking-tight text-[15px] text-ink-900">Backed</span>
+        <span class="hidden sm:inline-flex text-[11px] uppercase tracking-[0.18em] text-ink-400 ml-2">Exclusive 6&amp;7 figure brand deals</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <button id="resetBtn" class="inline-flex items-center gap-1.5 text-xs text-ink-500 hover:text-ink-900 transition px-2.5 py-1.5 rounded-lg hairline bg-white">
+          Reset
+        </button>
+        <a href="index.html" class="inline-flex items-center gap-1.5 text-sm text-ink-600 hover:text-ink-900 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to home
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-28 pb-20">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+    <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Financials</div>
+    <h1 class="mt-3 text-4xl sm:text-5xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+      Backed Financials.
+    </h1>
+    <p class="mt-4 text-ink-600 max-w-2xl text-[15px] leading-relaxed">
+      A live model of Backed's cash flow across a sample portfolio. Assumes <span class="text-ink-900 font-medium">13% annual yield</span> on funds while locked, with a minimum 60-day and average 120-day lock period. Adjust budgets, durations, add / remove campaigns — changes save automatically between sessions.
+    </p>
+
+    <!-- Aggregate top-line metrics -->
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <div class="card p-4 sm:p-5">
+        <div class="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-ink-400">
+          <span>AUM</span>
+          <span class="info-dot" tabindex="0" aria-label="How AUM is calculated">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8h.01M11 12h1v5h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="info-tip">Assets Under Management — the sum of every active campaign budget held in escrow. Each campaign budget is locked for the full duration plus a 30-day pay-out tail.</span>
+          </span>
+        </div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-ink-900" id="aumOut">£3,230,000</div>
+        <div class="mt-1.5 text-[11px] text-ink-500"><span id="campaignCount">10</span> active campaigns</div>
+      </div>
+      <div class="card p-4 sm:p-5">
+        <div class="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-ink-400">
+          <span>Gross yield</span>
+          <span class="info-dot" tabindex="0" aria-label="How yield is calculated">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8h.01M11 12h1v5h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="info-tip">13% APY on the portion of each campaign budget still held by Backed. AUM depletes as commissions are paid out (sales in month M → paid end of month M+1, so the principal earns yield for an extra 30-day tail).</span>
+          </span>
+        </div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-ink-900" id="yieldOut">£338,712</div>
+        <div class="mt-1.5 text-[11px] text-ink-500 leading-snug">
+          <span class="font-mono tabular-nums" id="yieldAnnual">£419,900</span> / yr ·
+          <span class="font-mono tabular-nums" id="yieldMonthly">£34,992</span> / mo
+        </div>
+      </div>
+      <div class="card p-4 sm:p-5">
+        <div class="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-ink-400">
+          <span>Retainer cost</span>
+          <span class="info-dot" tabindex="0" aria-label="How retainer cost is calculated">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8h.01M11 12h1v5h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="info-tip">Fixed retainer Backed pays each creator on day 1 of their campaign, scaled by budget tier: £30k→£500, £50k→£1,000, £100k→£2,000, £250k→£5,000, £500k→£10,000, £1M→£20,000, £2M→£50,000.</span>
+          </span>
+        </div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-ink-900" id="retainerOut">£64,550</div>
+        <div class="mt-1.5 text-[11px] text-ink-500">Paid to creators (tier-based)</div>
+      </div>
+      <div class="card p-4 sm:p-5 bg-brand-50/60">
+        <div class="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-ink-400">
+          <span>Platform margin</span>
+          <span class="info-dot" tabindex="0" aria-label="How platform margin is calculated">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8h.01M11 12h1v5h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="info-tip">Gross yield minus the tier-based retainer paid up-front to each creator. Annualised assumes each campaign recycles at its current duration (cycles/yr = 365 ÷ (days + 30-day pay-out tail)).</span>
+          </span>
+        </div>
+        <div class="mt-2 flex items-baseline gap-2 flex-wrap">
+          <span class="text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-brand-600" id="profitOut">£274,162</span>
+          <span class="text-xs font-medium tabular-nums text-brand-600/70" id="profitPct">81% of yield</span>
+        </div>
+        <div class="mt-1.5 text-[11px] text-ink-500 leading-snug">
+          <span class="font-mono tabular-nums" id="profitAnnual">£163,800</span> / yr ·
+          <span class="font-mono tabular-nums" id="profitMonthly">£13,650</span> / mo
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio table -->
+    <div class="mt-8 card-strong p-5 sm:p-7">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-5">
+        <div>
+          <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Portfolio</div>
+          <h2 class="mt-1 text-xl sm:text-2xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">Live campaigns</h2>
+        </div>
+        <button id="addBtn" class="inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-medium px-3.5 py-2 rounded-lg transition shadow-[0_6px_18px_-6px_rgba(38,79,203,0.55)]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Add campaign
+        </button>
+      </div>
+
+      <!-- Header row (desktop) -->
+      <div class="hidden lg:grid grid-cols-12 gap-3 px-3 pb-3 text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono items-center">
+        <div class="col-span-3">Campaign</div>
+        <div class="col-span-3 flex items-center gap-2">
+          <span>Budget</span>
+          <select id="bulkBudget" class="tier-select bulk" aria-label="Set all budgets">
+            <option value="">Set all…</option>
+            <option value="30000">£30k</option>
+            <option value="50000">£50k</option>
+            <option value="100000">£100k</option>
+            <option value="250000">£250k</option>
+            <option value="500000">£500k</option>
+            <option value="1000000">£1M</option>
+            <option value="2000000">£2M</option>
+          </select>
+        </div>
+        <div class="col-span-2 flex items-center gap-2">
+          <span>Duration</span>
+          <select id="bulkDuration" class="tier-select bulk" aria-label="Set all durations">
+            <option value="">Set all…</option>
+            <option value="60">60d</option>
+            <option value="90">90d</option>
+            <option value="180">180d</option>
+            <option value="365">365d</option>
+          </select>
+        </div>
+        <div class="col-span-1 text-right">Yield</div>
+        <div class="col-span-1 text-right">Retainer</div>
+        <div class="col-span-1 text-right">Margin</div>
+        <div class="col-span-1"></div>
+      </div>
+
+      <div id="portfolioRows" class="space-y-2"></div>
+
+      <!-- Totals footer -->
+      <div class="mt-4 pt-4 border-t border-brand-500/10 grid grid-cols-2 lg:grid-cols-12 gap-3 px-3 text-[12px] uppercase tracking-[0.18em] text-ink-500">
+        <div class="lg:col-span-3 font-medium text-ink-900">Totals</div>
+        <div class="lg:col-span-3 font-mono tabular-nums text-ink-900" id="totalBudget">£3,230,000</div>
+        <div class="lg:col-span-2 hidden lg:block"></div>
+        <div class="lg:col-span-1 font-mono tabular-nums text-ink-900 lg:text-right" id="totalYield">£338,712</div>
+        <div class="lg:col-span-1 font-mono tabular-nums text-ink-900 lg:text-right" id="totalRetainer">£64,550</div>
+        <div class="lg:col-span-1 font-mono tabular-nums text-brand-600 lg:text-right" id="totalProfit">£274,162</div>
+        <div class="lg:col-span-1"></div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+      <div class="card p-5">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Assumption</div>
+        <h3 class="mt-2 text-base font-medium text-ink-900">Yield rate</h3>
+        <p class="mt-2 text-[13px] text-ink-600 leading-snug">Funds are deposited into low-volatility preferential shares earning a blended <span class="text-ink-900 font-medium">13% APY</span>. Yield accrues for the full lock period.</p>
+      </div>
+      <div class="card p-5">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Assumption</div>
+        <h3 class="mt-2 text-base font-medium text-ink-900">Lock period</h3>
+        <p class="mt-2 text-[13px] text-ink-600 leading-snug">Funds are locked a <span class="text-ink-900 font-medium">minimum 60 days</span>, averaging <span class="text-ink-900 font-medium">120 days</span> across the portfolio. Cancellation incurs a 60-day return window.</p>
+      </div>
+      <div class="card p-5">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Run rate</div>
+        <h3 class="mt-2 text-base font-medium text-ink-900">Annualised figures</h3>
+        <p class="mt-2 text-[13px] text-ink-600 leading-snug">Yearly and monthly figures assume the portfolio recycles continuously — each campaign rerun at its current duration. Margin = yield − (retainer × cycles/yr).</p>
+      </div>
+    </div>
+
+    <p class="mt-8 text-xs text-ink-400 text-center max-w-3xl mx-auto">Illustrative model only. All campaign names are anonymised; figures are derived from Backed's standard fee schedule. Returns from preferential shares are subject to market conditions and not guaranteed. Changes you make are stored locally in your browser.</p>
+  </div>
+</main>
+
+<footer class="border-t border-brand-500/10 bg-white/60">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-sm text-ink-500">
+    <div class="flex items-center gap-2.5">
+      <span class="relative inline-flex w-2 h-2 rounded-full bg-brand-500"></span>
+      <span class="text-ink-900 font-semibold tracking-tight">Backed</span>
+      <span>· Exclusive 6&amp;7 figure brand deals</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="privacy.html" class="hover:text-ink-800">Privacy</a>
+      <a href="terms.html" class="hover:text-ink-800">Terms</a>
+      <a href="financials.html" class="hover:text-ink-800">Backed Financials</a>
+    </div>
+    <div class="font-mono text-[11px] tracking-[0.2em] uppercase">© 2026 Backed Limited</div>
+  </div>
+</footer>
+
+<script>
+const YIELD_APY = 0.13;
+const STORAGE_KEY = 'backed-financials-portfolio-v2';
+const BUDGET_TIERS = [30000, 50000, 100000, 250000, 500000, 1000000, 2000000];
+const BUDGET_LABELS = { 30000: '£30k', 50000: '£50k', 100000: '£100k', 250000: '£250k', 500000: '£500k', 1000000: '£1M', 2000000: '£2M' };
+const DURATION_OPTIONS = [60, 90, 180, 365];
+
+/* Snap an arbitrary budget value to the nearest tier */
+function nearestBudgetTier(budget) {
+  return BUDGET_TIERS.reduce((best, t) => Math.abs(t - budget) < Math.abs(best - budget) ? t : best, BUDGET_TIERS[0]);
+}
+const gbp = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
+
+const RETAINER_TIERS = [
+  { budget: 30000, retainer: 500 },
+  { budget: 50000, retainer: 1000 },
+  { budget: 100000, retainer: 2000 },
+  { budget: 250000, retainer: 5000 },
+  { budget: 500000, retainer: 10000 },
+  { budget: 1000000, retainer: 20000 },
+  { budget: 2000000, retainer: 50000 },
+];
+function retainerFor(budget) {
+  if (budget <= RETAINER_TIERS[0].budget) return RETAINER_TIERS[0].retainer;
+  for (let i = 1; i < RETAINER_TIERS.length; i++) {
+    const prev = RETAINER_TIERS[i - 1], next = RETAINER_TIERS[i];
+    if (budget <= next.budget) {
+      const t = (budget - prev.budget) / (next.budget - prev.budget);
+      return prev.retainer + t * (next.retainer - prev.retainer);
+    }
+  }
+  return RETAINER_TIERS[RETAINER_TIERS.length - 1].retainer;
+}
+
+const DEFAULT_PORTFOLIO = [
+  { brand: 'Sports brand',           creator: 'Sportsman',             budget: 75000,   days: 90 },
+  { brand: 'Beauty brand',           creator: 'Beauty influencer',     budget: 40000,   days: 90 },
+  { brand: 'Luxury fashion brand',   creator: 'Fashion influencer',    budget: 250000,  days: 180 },
+  { brand: 'Outdoor brand',          creator: 'Adventure creator',     budget: 500000,  days: 365 },
+  { brand: 'Food brand',             creator: 'Celebrity cook',        budget: 125000,  days: 90 },
+  { brand: 'Tech brand',             creator: 'Productivity creator',  budget: 55000,   days: 90 },
+  { brand: 'Hospitality brand',      creator: 'Travel influencer',     budget: 1000000, days: 365 },
+  { brand: 'Premium spirits brand',  creator: 'Celebrity chef',        budget: 350000,  days: 180 },
+  { brand: 'Skincare brand',         creator: 'Beauty creator',        budget: 85000,   days: 90 },
+  { brand: 'Luxury auto brand',      creator: 'Sports celebrity',      budget: 750000,  days: 365 },
+];
+
+function loadPortfolio() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));
+    return parsed.map(c => ({
+      brand: String(c.brand || 'New brand'),
+      creator: String(c.creator || 'Creator'),
+      budget: BUDGET_TIERS.includes(+c.budget) ? +c.budget : nearestBudgetTier(+c.budget || 100000),
+      days: DURATION_OPTIONS.includes(+c.days) ? +c.days : 90,
+    }));
+  } catch {
+    return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));
+  }
+}
+function savePortfolio() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(PORTFOLIO)); } catch {}
+}
+
+let PORTFOLIO = loadPortfolio();
+const rowsEl = document.getElementById('portfolioRows');
+
+/* Yield model
+   - Commission is unlocked daily via a sigmoid ramp (starting day 3) and totals to the principal.
+   - Commission earned in calendar month M is PAID at the end of month M+1 (30-day lag).
+   - AUM still earning yield at day d = principal − cumulative commission PAID by day d.
+   - Yield = integral of AUM × (13%/365) across the entire lifecycle (campaign + 30-day pay-out tail). */
+function computeCampaign(c) {
+  const principal = c.budget;
+  const days = c.days;
+  const dailyRate = YIELD_APY / 365;
+
+  // 1. Build commission earned per day (sigmoid starting day 3) and normalise to principal.
+  const raw = [];
+  let rawSum = 0;
+  for (let d = 1; d <= days; d++) {
+    const t = d / days;
+    const v = d < 3 ? 0 : 1 / (1 + Math.exp(-12 * (t - 0.15)));
+    raw.push(v);
+    rawSum += v;
+  }
+  const scale = rawSum > 0 ? principal / rawSum : 0;
+  const dailyCommission = raw.map(v => v * scale);
+
+  // 2. Group commission by 30-day calendar months.
+  const monthCount = Math.ceil(days / 30);
+  const monthlyCommission = new Array(monthCount).fill(0);
+  for (let d = 0; d < days; d++) {
+    monthlyCommission[Math.floor(d / 30)] += dailyCommission[d];
+  }
+
+  // 3. Walk the lifecycle: payment for month M lands on day (M+2)*30.
+  // Total lifecycle ends when the last month's commission is paid out.
+  const lifecycleDays = (monthCount + 1) * 30;
+  let cumulativePaid = 0;
+  let aumDaySum = 0;
+  for (let d = 1; d <= lifecycleDays; d++) {
+    // Payment from month M occurs on day (M+2)*30
+    for (let m = 0; m < monthCount; m++) {
+      if (d === (m + 2) * 30) cumulativePaid += monthlyCommission[m];
+    }
+    aumDaySum += Math.max(0, principal - cumulativePaid);
+  }
+
+  const yieldAmt = aumDaySum * dailyRate;
+  const retainer = retainerFor(principal);
+  const profit = yieldAmt - retainer;
+  return { yieldAmt, retainer, profit, lifecycleDays };
+}
+
+function renderRows() {
+  rowsEl.innerHTML = '';
+  PORTFOLIO.forEach((c, i) => {
+    const { yieldAmt, retainer, profit } = computeCampaign(c);
+    const profitClass = profit >= 0 ? 'text-brand-600' : 'text-rose-600';
+
+    const budgetOpts = BUDGET_TIERS.map(t =>
+      `<option value="${t}"${t === c.budget ? ' selected' : ''}>${BUDGET_LABELS[t]}</option>`
+    ).join('');
+
+    const durOpts = DURATION_OPTIONS.map(d =>
+      `<button type="button" class="dur-opt" data-i="${i}" data-d="${d}" data-active="${d === c.days}">${d}d</button>`
+    ).join('');
+
+    const row = document.createElement('div');
+    row.className = 'card p-3 grid grid-cols-2 lg:grid-cols-12 gap-2 lg:gap-3 lg:items-center text-sm';
+    row.innerHTML = `
+      <div class="lg:col-span-3">
+        <input class="text-edit font-medium text-ink-900" data-i="${i}" data-field="brand" value="${escapeHtml(c.brand)}" />
+        <div class="text-xs text-ink-500 mt-0.5">with <input class="text-edit text-brand-600 inline-block" style="width:auto; min-width:80px;" data-i="${i}" data-field="creator" value="${escapeHtml(c.creator)}" /></div>
+      </div>
+      <div class="lg:col-span-3">
+        <select class="tier-select budget-select" data-i="${i}">${budgetOpts}</select>
+      </div>
+      <div class="lg:col-span-2 col-span-2 grid grid-cols-4 gap-1">${durOpts}</div>
+      <div class="lg:col-span-1 lg:text-right font-mono tabular-nums text-ink-700" data-yield="${i}">${gbp.format(yieldAmt)}</div>
+      <div class="lg:col-span-1 lg:text-right font-mono tabular-nums text-ink-700" data-retainer="${i}">${gbp.format(retainer)}</div>
+      <div class="lg:col-span-1 lg:text-right font-mono tabular-nums font-medium ${profitClass}" data-profit="${i}">${gbp.format(profit)}</div>
+      <div class="lg:col-span-1 lg:text-right">
+        <button type="button" class="row-del" data-del-i="${i}" aria-label="Remove campaign">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    `;
+    rowsEl.appendChild(row);
+  });
+
+  wireRowHandlers();
+}
+
+function wireRowHandlers() {
+  rowsEl.querySelectorAll('.dur-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = +btn.dataset.i;
+      const d = +btn.dataset.d;
+      PORTFOLIO[i].days = d;
+      // Update active state without re-render
+      const row = btn.closest('.card');
+      row.querySelectorAll(`.dur-opt[data-i="${i}"]`).forEach(b => b.dataset.active = (+b.dataset.d === d));
+      updateRowDisplay(i);
+      renderTotals();
+      savePortfolio();
+    });
+  });
+  rowsEl.querySelectorAll('.budget-select').forEach(sel => {
+    sel.addEventListener('change', () => {
+      const i = +sel.dataset.i;
+      PORTFOLIO[i].budget = +sel.value;
+      updateRowDisplay(i);
+      renderTotals();
+      savePortfolio();
+    });
+  });
+  rowsEl.querySelectorAll('.text-edit').forEach(input => {
+    input.addEventListener('input', () => {
+      const i = +input.dataset.i;
+      PORTFOLIO[i][input.dataset.field] = input.value;
+    });
+    input.addEventListener('change', savePortfolio);
+    input.addEventListener('blur', savePortfolio);
+  });
+  rowsEl.querySelectorAll('[data-del-i]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = +btn.dataset.delI;
+      PORTFOLIO.splice(i, 1);
+      renderRows();
+      renderTotals();
+      savePortfolio();
+    });
+  });
+}
+
+function updateRowDisplay(i) {
+  const { yieldAmt, retainer, profit } = computeCampaign(PORTFOLIO[i]);
+  const profitClass = profit >= 0 ? 'text-brand-600' : 'text-rose-600';
+  const yEl = rowsEl.querySelector(`[data-yield="${i}"]`);
+  const rEl = rowsEl.querySelector(`[data-retainer="${i}"]`);
+  const pEl = rowsEl.querySelector(`[data-profit="${i}"]`);
+  if (yEl) yEl.textContent = gbp.format(yieldAmt);
+  if (rEl) rEl.textContent = gbp.format(retainer);
+  if (pEl) {
+    pEl.textContent = gbp.format(profit);
+    pEl.classList.remove('text-brand-600','text-rose-600');
+    pEl.classList.add(profitClass);
+  }
+}
+
+function renderTotals() {
+  let totalBudget = 0, totalYield = 0, totalRetainer = 0;
+  // Annualised: cycles per year = 365 / lifecycleDays (campaign days + 30-day payment tail)
+  let annualYield = 0, annualRetainerCost = 0;
+  PORTFOLIO.forEach(c => {
+    const { yieldAmt, retainer, lifecycleDays } = computeCampaign(c);
+    totalBudget   += c.budget;
+    totalYield    += yieldAmt;
+    totalRetainer += retainer;
+    const cyclesPerYear = 365 / lifecycleDays;
+    annualYield   += yieldAmt * cyclesPerYear;
+    annualRetainerCost += retainer * cyclesPerYear;
+  });
+  const totalProfit  = totalYield - totalRetainer;
+  const annualProfit = annualYield - annualRetainerCost;
+
+  document.getElementById('aumOut').textContent       = gbp.format(totalBudget);
+  document.getElementById('yieldOut').textContent     = gbp.format(totalYield);
+  document.getElementById('retainerOut').textContent  = gbp.format(totalRetainer);
+  document.getElementById('profitOut').textContent    = gbp.format(totalProfit);
+  document.getElementById('campaignCount').textContent= PORTFOLIO.length;
+  const profitPct = totalYield > 0 ? (totalProfit / totalYield) * 100 : 0;
+  document.getElementById('profitPct').textContent    = profitPct.toFixed(0) + '% of yield';
+
+  document.getElementById('yieldAnnual').textContent  = gbp.format(annualYield);
+  document.getElementById('yieldMonthly').textContent = gbp.format(annualYield / 12);
+  document.getElementById('profitAnnual').textContent = gbp.format(annualProfit);
+  document.getElementById('profitMonthly').textContent= gbp.format(annualProfit / 12);
+
+  document.getElementById('totalBudget').textContent  = gbp.format(totalBudget);
+  document.getElementById('totalYield').textContent   = gbp.format(totalYield);
+  document.getElementById('totalRetainer').textContent= gbp.format(totalRetainer);
+  document.getElementById('totalProfit').textContent  = gbp.format(totalProfit);
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+
+document.getElementById('bulkBudget').addEventListener('change', (e) => {
+  const v = +e.target.value;
+  if (!v) return;
+  PORTFOLIO.forEach(c => c.budget = v);
+  renderRows();
+  renderTotals();
+  savePortfolio();
+  e.target.value = ''; // reset the dropdown back to "Set all…"
+});
+
+document.getElementById('bulkDuration').addEventListener('change', (e) => {
+  const v = +e.target.value;
+  if (!v) return;
+  PORTFOLIO.forEach(c => c.days = v);
+  renderRows();
+  renderTotals();
+  savePortfolio();
+  e.target.value = '';
+});
+
+document.getElementById('addBtn').addEventListener('click', () => {
+  PORTFOLIO.push({ brand: 'New brand', creator: 'Creator', budget: 100000, days: 90 });
+  renderRows();
+  renderTotals();
+  savePortfolio();
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (!confirm('Reset all campaigns to defaults? This will discard your edits.')) return;
+  PORTFOLIO = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));
+  renderRows();
+  renderTotals();
+  savePortfolio();
+});
+
+renderRows();
+renderTotals();
+
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('load', () => window.scrollTo(0, 0));
+</script>
+
+</body>
+</html>

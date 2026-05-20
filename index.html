@@ -1,0 +1,2459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Backed — Risk Free Marketing</title>
+<meta name="description" content="Marketing re-invented. Brands only pay commission on verified sales at guaranteed ROAS. Creators get fixed retainers + leading commissions on every campaign. Exclusive 6 & 7 figure brand deals." />
+
+<!-- Favicon (blue dot, inline SVG) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%233B6AE8'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%233B6AE8'/%3E%3C/svg%3E" />
+
+<!-- Open Graph (link previews on Facebook / LinkedIn / Slack etc.) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Backed — Risk Free Marketing" />
+<meta property="og:description" content="Brands only pay commission on verified sales at guaranteed ROAS. Creators get fixed retainers + leading commissions. Marketing re-invented." />
+<meta property="og:site_name" content="Backed" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Backed — Risk Free Marketing" />
+<meta name="twitter:description" content="Brands only pay commission on verified sales at guaranteed ROAS. Creators get fixed retainers + leading commissions. Marketing re-invented." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          serif: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+        },
+        colors: {
+          paper: {
+            50:  '#FBFCFE',
+            100: '#F4F7FB',
+            200: '#EAF0F8',
+            300: '#DDE6F2',
+          },
+          ink: {
+            900: '#0B1B33',
+            800: '#162844',
+            700: '#243A5C',
+            600: '#3A507A',
+            500: '#5B7196',
+            400: '#8195B5',
+            300: '#A8BAD3',
+          },
+          brand: {
+            50:  '#EEF4FF',
+            100: '#DCE7FF',
+            200: '#BDD0FF',
+            300: '#90B0FF',
+            400: '#5E8AF7',
+            500: '#3B6AE8',
+            600: '#264FCB',
+            700: '#1B3CA0',
+          },
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root { color-scheme: light; }
+  html, body { background: #F4F7FB; }
+  body {
+    font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01','ss02','cv11';
+    color: #162844;
+  }
+
+  /* Background washes */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(38,79,203,0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(38,79,203,0.07) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: -1px -1px;
+  }
+  .bg-radial-soft {
+    background:
+      radial-gradient(1200px 700px at 50% -10%, rgba(94,138,247,0.18), transparent 60%),
+      radial-gradient(900px 600px at 90% 10%, rgba(189,208,255,0.40), transparent 60%),
+      radial-gradient(700px 500px at 10% 30%, rgba(238,244,255,0.9), transparent 60%);
+  }
+  .mask-fade-edges {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 88%);
+            mask-image: radial-gradient(ellipse at center, black 55%, transparent 88%);
+  }
+
+  /* Marquee */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 38s linear infinite; }
+
+  /* Kinetic typography */
+  .kt-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 0.95;
+    padding-bottom: 0.18em;
+  }
+  .kt-word > span {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .kt-in > span {
+    animation: kt-rise 720ms cubic-bezier(.2,.85,.2,1) forwards;
+  }
+  @keyframes kt-rise {
+    0%   { transform: translateY(110%); opacity: 0; }
+    60%  { opacity: 1; }
+    100% { transform: translateY(0%);   opacity: 1; }
+  }
+
+  /* Custom range slider */
+  .range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 28px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .range:focus { outline: none; }
+  .range::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background:
+      linear-gradient(to right, #3B6AE8 var(--fill,50%), rgba(11,27,51,0.10) var(--fill,50%));
+  }
+  .range::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(11,27,51,0.10);
+  }
+  .range::-moz-range-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: #3B6AE8;
+  }
+  .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px; height: 22px;
+    margin-top: -8px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 2px solid #3B6AE8;
+    box-shadow:
+      0 0 0 4px rgba(59,106,232,0.10),
+      0 4px 14px rgba(38,79,203,0.20);
+    transition: transform 120ms ease, box-shadow 200ms ease;
+  }
+  .range::-webkit-slider-thumb:hover { transform: scale(1.08); }
+  .range::-webkit-slider-thumb:active { transform: scale(0.96); box-shadow: 0 0 0 6px rgba(59,106,232,0.18); }
+  .range::-moz-range-thumb {
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 2px solid #3B6AE8;
+    box-shadow:
+      0 0 0 4px rgba(59,106,232,0.10),
+      0 4px 14px rgba(38,79,203,0.20);
+  }
+
+  /* Cards */
+  .card {
+    background: #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.08);
+    border-radius: 22px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 1px 2px rgba(11,27,51,0.04),
+      0 12px 32px -16px rgba(38,79,203,0.10);
+  }
+  .card-strong {
+    background:
+      radial-gradient(800px 320px at 0% 0%, rgba(59,106,232,0.06), transparent 60%),
+      #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.10);
+    border-radius: 28px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.7) inset,
+      0 2px 8px rgba(11,27,51,0.04),
+      0 30px 60px -30px rgba(38,79,203,0.18);
+  }
+  .hairline { border: 1px solid rgba(38,79,203,0.10); }
+
+  /* Tab buttons */
+  .tab-btn {
+    position: relative;
+    transition: color 200ms ease;
+    color: #5B7196;
+  }
+  .tab-btn[data-active='true'] { color: #FFFFFF; }
+  .tab-btn:hover { color: #243A5C; }
+  .tab-btn[data-active='true']:hover { color: #FFFFFF; }
+
+  /* Segmented control (duration) */
+  .dur-opt {
+    background: #FFFFFF;
+    color: #3A507A;
+    border: 1px solid rgba(38,79,203,0.10);
+  }
+  .dur-opt:hover { background: #EEF4FF; color: #1B3CA0; }
+  .dur-opt[data-active='true'] {
+    background: #3B6AE8;
+    color: #FFFFFF;
+    border-color: #3B6AE8;
+    box-shadow: 0 6px 18px -6px rgba(38,79,203,0.45);
+  }
+
+  /* Slider control cards — equalise heights across the row */
+  .brand-only, .creator-only { height: 100%; }
+
+  /* Chips (deliverables / brand support) */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(38,79,203,0.12);
+    background: #FFFFFF;
+    color: #5B7196;
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .chip svg { flex-shrink: 0; }
+  .chip:hover {
+    background: #EEF4FF;
+    color: #1B3CA0;
+    border-color: #BDD0FF;
+  }
+  .chip.chip-on {
+    background: #EEF4FF;
+    color: #1B3CA0;
+    border-color: #BDD0FF;
+  }
+  .chip.chip-on:hover {
+    background: #DCE7FF;
+    border-color: #90B0FF;
+  }
+  .tab-indicator {
+    position: absolute;
+    inset: 4px;
+    border-radius: 12px;
+    background: #3B6AE8;
+    box-shadow: 0 6px 22px -6px rgba(38,79,203,0.45);
+    transition: transform 420ms cubic-bezier(.2,.85,.2,1), width 420ms cubic-bezier(.2,.85,.2,1);
+    z-index: 0;
+  }
+
+  /* Step connector */
+  .step-line {
+    background-image: linear-gradient(to right, rgba(59,106,232,0.45) 50%, transparent 0%);
+    background-size: 14px 1px;
+    background-repeat: repeat-x;
+    background-position: center;
+    height: 1px;
+  }
+
+  /* Pulse dot */
+  @keyframes pulseDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.55; }
+  }
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: #3B6AE8;
+    animation: pulseDot 2s ease-in-out infinite;
+    opacity: .55;
+    z-index: -1;
+  }
+
+  /* Live status indicator (vault cards) — subtle pulsing glow */
+  @keyframes livePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55); }
+    50%      { box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
+  }
+  .live-dot { animation: livePulse 1.8s ease-out infinite; }
+
+  /* Split-flap board — rotating tagline */
+  .flip-board {
+    perspective: 220px;
+    white-space: nowrap;
+  }
+  .flip-char {
+    display: inline-block;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    transition: transform 180ms cubic-bezier(.5,.05,.5,.95), opacity 180ms ease;
+    will-change: transform, opacity;
+  }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.85,.2,1); }
+  .reveal.show { opacity: 1; transform: translateY(0); }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+
+  ::selection { background: #BDD0FF; color: #0B1B33; }
+
+  /* Account for fixed nav when jumping to anchors */
+  section[id] { scroll-margin-top: 72px; }
+
+  /* ── Sign-up modal ── */
+  .modal-backdrop {
+    background: rgba(11, 27, 51, 0.45);
+    -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+  }
+  @keyframes modalIn {
+    0%   { opacity: 0; transform: translateY(10px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0)    scale(1); }
+  }
+  .modal-card { animation: modalIn 280ms cubic-bezier(.2,.85,.2,1); }
+
+  .field-label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #5B7196;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .field-input,
+  .field-select {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid rgba(38,79,203,0.14);
+    border-radius: 10px;
+    background: #FBFCFE;
+    font-size: 15px;
+    color: #162844;
+    font-family: inherit;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .field-input::placeholder { color: #8195B5; }
+  .field-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235B7196' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+  .field-input:focus,
+  .field-select:focus {
+    outline: none;
+    border-color: #3B6AE8;
+    box-shadow: 0 0 0 3px rgba(59,106,232,0.14);
+  }
+  .signup-path-btn {
+    background: #FFFFFF;
+    border: 1px solid rgba(38,79,203,0.12);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+  .signup-path-btn:hover {
+    border-color: #3B6AE8;
+    box-shadow: 0 12px 32px -16px rgba(38,79,203,0.30);
+    transform: translateY(-1px);
+  }
+</style>
+</head>
+<body class="bg-paper-100 text-ink-800 antialiased">
+
+<!-- ───────────────────────── NAV ───────────────────────── -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 pt-4">
+    <div class="hairline rounded-2xl bg-white/80 backdrop-blur-xl flex items-center justify-between px-4 py-3 shadow-[0_8px_28px_-12px_rgba(38,79,203,0.18)]">
+      <a href="#top" class="flex items-center gap-2.5">
+        <span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-brand-500 pulse-dot"></span>
+        <span class="font-semibold tracking-tight text-[15px] text-ink-900">Backed</span>
+        <span id="flipBoard" class="hidden sm:inline-flex text-[11px] uppercase tracking-[0.18em] text-ink-400 ml-2 flip-board" aria-live="polite"></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-ink-600">
+        <a href="#engine" data-engine-tab="brand"   class="hover:text-ink-900 transition">Brands</a>
+        <a href="#engine" data-engine-tab="creator" class="hover:text-ink-900 transition">Creators</a>
+        <a href="#live" class="hover:text-ink-900 transition">Live Campaigns</a>
+        <a href="#how"  class="hover:text-ink-900 transition">How it works</a>
+        <a href="#faq"  class="hover:text-ink-900 transition">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="#" data-signin class="hidden sm:inline-flex text-sm text-ink-700 hover:text-ink-900 px-3 py-1.5 rounded-lg transition">Sign in</a>
+        <a href="#" data-signup class="inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-medium px-3.5 py-2 rounded-lg transition shadow-[0_6px_18px_-6px_rgba(38,79,203,0.55)]">
+          Interested?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="pt-28">
+
+<!-- ───────────────────────── HERO ───────────────────────── -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid mask-fade-edges opacity-80 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-radial-soft pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 pt-6 sm:pt-8 pb-12 sm:pb-14">
+    <!-- Marketing Director pull quote (centered over the 3rd KPI tile, aligned with headline top) -->
+    <aside class="reveal hidden lg:block absolute top-[4.4rem] xl:top-[4.6rem] max-w-sm w-[22rem] z-10" style="left: 62.5%;">
+      <figure class="card p-7 relative">
+        <blockquote class="text-[17px] font-sans text-ink-800 leading-snug">
+          "The most effective use of marketing spend we've ever had — direct, trackable, risk-free."
+        </blockquote>
+        <figcaption class="mt-5 flex items-center gap-3 pt-5 border-t border-brand-500/10">
+          <span class="inline-flex w-9 h-9 rounded-full bg-gradient-to-br from-brand-200 to-brand-400 shrink-0"></span>
+          <span class="flex flex-col leading-tight">
+            <span class="text-sm font-medium text-ink-900">Marketing Director</span>
+            <span class="text-xs text-ink-500">Luxury fashion brand</span>
+          </span>
+        </figcaption>
+      </figure>
+    </aside>
+    <div class="reveal flex items-center gap-2.5 text-[11px] uppercase tracking-[0.22em] text-ink-500">
+      <span class="inline-flex items-center gap-1.5 hairline bg-white/70 rounded-full px-2.5 py-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+        100% of brand spend goes to creators
+      </span>
+      <span class="hidden sm:inline">Invite only</span>
+    </div>
+
+    <h1 id="kineticHeadline"
+        class="reveal mt-4 sm:mt-5 font-medium tracking-[-0.04em] leading-[0.92] text-[clamp(36px,6.6vw,92px)] text-ink-900">
+      <span class="block">
+        <span class="kt-word"><span>Truly</span></span>
+        <span class="kt-word ml-[0.18em]"><span>zero&nbsp;risk</span></span>
+      </span>
+      <span class="block -mt-3 sm:-mt-5 text-ink-400 font-serif italic tracking-[-0.01em]">
+        <span class="kt-word"><span>marketing.</span></span>
+      </span>
+    </h1>
+
+    <p class="reveal mt-4 sm:mt-5 max-w-2xl text-[15px] sm:text-[17px] leading-relaxed text-ink-600">
+      Brands achieve guaranteed ROAS.<br />
+      Creators get fixed retainers + leading commissions.<br />
+      Budgets are spent effectively or returned.
+    </p>
+
+    <div class="reveal mt-5 flex flex-col sm:flex-row gap-3">
+      <a href="#" data-signup class="group inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3.5 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
+        Interested?
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="transition group-hover:translate-x-0.5"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#live" class="inline-flex items-center justify-center gap-2 hairline bg-white/70 hover:bg-white px-5 py-3.5 rounded-xl font-medium tracking-tight text-ink-800 transition">
+        See live campaigns
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="reveal mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+      <div class="card p-4 sm:p-5">
+        <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Guaranteed ROAS</div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tracking-tight text-brand-600">Always</div>
+      </div>
+      <div class="card p-4 sm:p-5">
+        <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Platform fee</div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-ink-900">£0</div>
+      </div>
+      <div class="card p-4 sm:p-5">
+        <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Creator incentives</div>
+        <div class="mt-2 text-base sm:text-lg font-medium tracking-tight text-ink-900 leading-tight">Leading commissions <span class="text-brand-600">+ fixed retainers</span></div>
+      </div>
+      <div class="card p-4 sm:p-5">
+        <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Capital at risk</div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tabular-nums tracking-tight text-brand-600">£0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust marquee -->
+  <div class="relative border-y border-brand-500/10 bg-white/70 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-4 flex items-center gap-6">
+      <div class="shrink-0 text-[11px] uppercase tracking-[0.22em] text-ink-400">Settles into</div>
+      <div class="relative overflow-hidden flex-1">
+        <div class="marquee-track flex gap-12 whitespace-nowrap text-ink-500 font-medium tracking-tight text-lg">
+          <span>Shopify</span><span>Amazon</span><span>Stripe</span><span>WooCommerce</span>
+          <span>Klaviyo</span><span>Recharge</span><span>BigCommerce</span><span>Square</span>
+          <span>Shopify</span><span>Amazon</span><span>Stripe</span><span>WooCommerce</span>
+          <span>Klaviyo</span><span>Recharge</span><span>BigCommerce</span><span>Square</span>
+        </div>
+        <div class="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/90 to-transparent"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/90 to-transparent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── ENGINE ───────────────────────── -->
+<section id="engine" class="relative">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-6 sm:py-8">
+
+    <div class="reveal flex items-end justify-between flex-wrap gap-3 mb-3">
+      <div class="max-w-2xl">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">The Engine</div>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+          Budget · Duration · <span class="text-ink-400 font-serif italic">Results.</span>
+        </h2>
+      </div>
+      <p class="text-ink-600 max-w-md text-[13px] leading-snug">
+        Set your campaign budget, your duration, and your target <span class="text-brand-600 font-mono">ROAS</span> — see exactly what the brand pays and the creator earns.
+      </p>
+    </div>
+
+    <div class="card-strong p-4 sm:p-5 lg:p-6">
+
+      <!-- Tabs (Brands / Creators) -->
+      <div class="mb-5">
+        <div class="relative inline-flex hairline rounded-2xl p-1 bg-paper-100" role="tablist" id="tabs">
+          <span id="tabIndicator" class="tab-indicator" style="width:120px; transform:translateX(0)"></span>
+          <button class="tab-btn relative z-10 px-5 py-2.5 text-sm font-medium tracking-tight rounded-xl" data-tab="brand"   data-active="true">Brands</button>
+          <button class="tab-btn relative z-10 px-5 py-2.5 text-sm font-medium tracking-tight rounded-xl" data-tab="creator" data-active="false">Creators</button>
+        </div>
+      </div>
+
+      <!-- Global Controls -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+
+        <div class="hairline rounded-xl p-4 bg-paper-50">
+          <div class="flex items-center justify-between">
+            <label class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Brands campaign budget</label>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">GBP</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-1">
+            <span class="text-3xl font-medium tabular-nums tracking-tight text-ink-900" id="principalOut">£100,000</span>
+          </div>
+          <input id="principal" class="range mt-4" type="range" min="30000" max="2000000" step="5000" value="100000" />
+          <div class="mt-2 flex justify-between text-[11px] text-ink-400 font-mono">
+            <span>£30k</span><span>£2M</span>
+          </div>
+        </div>
+
+        <!-- Slot 2: Brand → Duration · Creator → Deliverables -->
+        <div>
+          <!-- Brand view: Campaign duration -->
+          <div class="brand-only hairline rounded-xl p-4 bg-paper-50">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Campaign duration</label>
+              <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">DAYS</span>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-3xl font-medium tabular-nums tracking-tight text-ink-900" id="durationOut">90</span>
+              <span class="text-ink-400 ml-2 text-base">days</span>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-2" role="group" id="durationOpts">
+              <button type="button" class="dur-opt rounded-lg py-2 text-sm font-medium tabular-nums transition" data-value="90"  data-active="true">90</button>
+              <button type="button" class="dur-opt rounded-lg py-2 text-sm font-medium tabular-nums transition" data-value="180" data-active="false">180</button>
+              <button type="button" class="dur-opt rounded-lg py-2 text-sm font-medium tabular-nums transition" data-value="365" data-active="false">365</button>
+            </div>
+          </div>
+          <!-- Creator view: Deliverables -->
+          <div class="creator-only hairline rounded-xl p-4 bg-paper-50 hidden">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Deliverables</label>
+              <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">Creator scope</span>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>Reels</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>Shorts</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>Long-form</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg>Insta posts</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Stories</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M10 14l-3 3a3 3 0 11-4-4l3-3M14 10l3-3a3 3 0 114 4l-3 3M9 15l6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Pinned affiliate</span>
+              <span class="chip"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13M9 13l12-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.8"/></svg>TikTok audio</span>
+              <span class="chip"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 9v11" stroke="currentColor" stroke-width="1.8"/></svg>Blog mention</span>
+            </div>
+          </div>
+          <input id="duration" type="hidden" value="90" />
+        </div>
+
+        <!-- Slot 3: Brand → ROAS · Creator → Brand support -->
+        <div>
+          <!-- Brand view: Required ROAS -->
+          <div class="brand-only hairline rounded-xl p-4 bg-paper-50">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Required ROAS</label>
+              <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">MULTIPLIER</span>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-3xl font-medium tabular-nums tracking-tight text-ink-900" id="roasOut">3</span>
+              <span class="text-ink-400 ml-1 text-base">×</span>
+            </div>
+            <input id="roas" class="range mt-4" type="range" min="2" max="6" step="0.5" value="3" />
+            <div class="mt-2 flex justify-between text-[11px] text-ink-400 font-mono">
+              <span>2×</span><span>6×</span>
+            </div>
+            <div class="mt-3 pt-3 border-t border-brand-500/10 flex items-baseline justify-between">
+              <span class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Creator commission</span>
+              <span class="text-lg font-medium tabular-nums text-brand-600" id="roasCommissionOut">33.33%</span>
+            </div>
+          </div>
+          <!-- Creator view: Brand support -->
+          <div class="creator-only hairline rounded-xl p-4 bg-paper-50 hidden">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Brand support</label>
+              <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">What brand provides</span>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 8V21M8 8c0-2 2-3 4-1 2-2 4-1 4 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Free samples</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="2" stroke="currentColor" stroke-width="1.8"/><path d="M21 16l-5-5-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Brand assets</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Brand days</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5L20 9l-4 4 1 5.5L12 16l-5 2.5L8 13l-4-4 5.5-1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Experiences</span>
+              <span class="chip chip-on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1118 0z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/></svg>Travel</span>
+              <span class="chip"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.7l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.7l7 4a2 2 0 002 0l7-4a2 2 0 001-1.7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Product seeding</span>
+              <span class="chip"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Studio time</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab panels -->
+      <div class="mt-5 sm:mt-6">
+
+        <!-- BRAND PANEL -->
+        <div class="mt-5" id="panel-brand">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+
+            <div class="card p-4 relative overflow-hidden">
+              <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-brand-300/30 blur-2xl pointer-events-none"></div>
+              <div class="relative">
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex w-8 h-8 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19l5-5 4 4 7-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 9h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Revenue target</div>
+                </div>
+                <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="brandRevenueTarget">£300,000</div>
+                <p class="mt-2 text-xs text-ink-500 leading-snug"><span id="brandRoasLabel">3</span>× ROAS — Budget fully utilised as verified sales hit.</p>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex w-8 h-8 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="7" cy="7" r="2.4" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="17" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+                <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Effective commission</div>
+              </div>
+              <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="brandCommission">33.33%</div>
+              <p class="mt-2 text-xs text-ink-500 leading-snug">Math: 1 ÷ ROAS. Sales beyond target are pure margin.</p>
+            </div>
+
+            <div class="card p-4 bg-brand-50/60">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex w-8 h-8 rounded-lg bg-brand-100 items-center justify-center text-brand-600">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Worst case</div>
+              </div>
+              <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-brand-600"><span id="brandWorstAmount">£100,000</span></div>
+              <p class="mt-2 text-xs text-ink-500 leading-snug">Campaign flops — budget returned to your bank.</p>
+            </div>
+
+            <div class="card p-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex w-8 h-8 rounded-lg bg-paper-200 items-center justify-center text-ink-700">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.4L20 9.3l-4 3.9.9 5.6L12 16l-4.9 2.8L8 13.2l-4-3.9 5.4-.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </span>
+                <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Best case</div>
+              </div>
+              <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900"><span id="brandBestAmount">£300,000</span></div>
+              <p class="mt-2 text-xs text-ink-500 leading-snug">Budget fully utilised — verified revenue generated. Top up and run it again.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CREATOR PANEL -->
+        <div class="mt-5 hidden" id="panel-creator">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="card p-6 relative overflow-hidden">
+              <div class="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-brand-300/30 blur-2xl pointer-events-none"></div>
+              <div class="relative">
+                <div class="flex items-center gap-2.5">
+                  <span class="inline-flex w-9 h-9 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </span>
+                  <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Secured retainer</div>
+                </div>
+                <div class="mt-5 flex items-baseline gap-1.5">
+                  <span class="text-3xl sm:text-4xl font-medium tracking-[-0.03em] tabular-nums text-brand-600" id="creatorRetainerTotal">£2,000</span>
+                  <span class="text-ink-400 text-sm">total</span>
+                </div>
+                <p class="mt-4 text-sm text-ink-500 leading-snug">Paid day 1 of campaign start, sale commission settle daily.</p>
+              </div>
+            </div>
+
+            <div class="card p-6">
+              <div class="flex items-center gap-2.5">
+                <span class="inline-flex w-9 h-9 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 4-3 11H6L3 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+                <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Total earnable commission</div>
+              </div>
+              <div class="mt-5 text-3xl sm:text-4xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="creatorBounty">£100,000</div>
+              <p class="mt-4 text-sm text-ink-500 leading-snug">Secured Budget — yours to unlock, sale by sale.</p>
+            </div>
+
+            <div class="card p-6 bg-brand-50/60">
+              <div class="flex items-center gap-2.5">
+                <span class="inline-flex w-9 h-9 rounded-lg bg-brand-100 items-center justify-center text-brand-600">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Total earnable</div>
+              </div>
+              <div class="mt-5 text-3xl sm:text-4xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="creatorGrant">£102,000</div>
+              <p class="mt-4 text-sm text-ink-500 leading-snug">Market leading fee structure — no platform fees, all brand spend passed to the creator.</p>
+            </div>
+
+            <div class="card p-6">
+              <div class="flex items-center gap-2.5">
+                <span class="inline-flex w-9 h-9 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </span>
+                <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Payout mechanic</div>
+              </div>
+              <div class="mt-5 text-2xl sm:text-3xl font-medium tracking-[-0.02em] text-ink-900 leading-tight">Instant API sales monitoring</div>
+              <p class="mt-4 text-sm text-ink-500 leading-snug">Verified sale commissions paid monthly.</p>
+            </div>
+          </div>
+
+          <div class="mt-32 card p-6">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="text-[12px] uppercase tracking-[0.18em] text-ink-500">Cumulative earnings simulation</div>
+              <div class="flex items-center gap-4 text-[11px] text-ink-500">
+                <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-brand-200"></span>Retainer</span>
+                <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-brand-500"></span>Commission</span>
+                <span class="inline-flex items-center gap-1.5"><span class="w-3 h-[2px] rounded-full bg-brand-700"></span>Total</span>
+              </div>
+            </div>
+            <div class="mt-4 flex gap-3">
+              <div class="flex items-stretch">
+                <div class="flex items-center pr-1">
+                  <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400" style="writing-mode:vertical-rl; transform:rotate(180deg);">Earnings</span>
+                </div>
+                <div class="flex flex-col justify-between text-[10px] text-ink-400 font-mono pr-2 py-1 text-right" style="min-width: 56px;">
+                  <span id="chartYMax">£100</span>
+                  <span id="chartYMid">£50</span>
+                  <span>£0</span>
+                </div>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="h-36 sm:h-44 w-full relative" id="chartHover">
+                  <svg id="incomeChart" viewBox="0 0 600 160" preserveAspectRatio="none" class="w-full h-full overflow-visible">
+                <defs>
+                  <linearGradient id="gRetainer" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#90B0FF" stop-opacity="0.55" />
+                    <stop offset="100%" stop-color="#90B0FF" stop-opacity="0.10" />
+                  </linearGradient>
+                  <linearGradient id="gCommission" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#3B6AE8" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="#3B6AE8" stop-opacity="0.08" />
+                  </linearGradient>
+                </defs>
+                <path id="incomeRetainer"   d="" fill="url(#gRetainer)" stroke="#90B0FF" stroke-width="1" stroke-linejoin="round"></path>
+                <path id="incomeCommission" d="" fill="url(#gCommission)"></path>
+                <path id="incomeTotal"      d="" fill="none" stroke="#264FCB" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"></path>
+                <line   id="chartGuideLine" x1="0" x2="0" y1="0" y2="160" stroke="#264FCB" stroke-width="0.6" stroke-dasharray="3 3" opacity="0" pointer-events="none"></line>
+                <circle id="chartGuideDot"  cx="0" cy="0" r="3.5" fill="#264FCB" stroke="#FFFFFF" stroke-width="1.5" opacity="0" pointer-events="none"></circle>
+              </svg>
+                  <div id="chartTooltip" class="hidden absolute pointer-events-none z-20 -translate-x-1/2 -translate-y-full" style="white-space:nowrap;">
+                    <div class="hairline bg-white shadow-[0_8px_24px_-8px_rgba(38,79,203,0.25)] rounded-lg px-3 py-2 text-[11px] leading-tight">
+                      <div class="text-ink-400 uppercase tracking-[0.16em] text-[9px]">Day <span id="tipDay">1</span></div>
+                      <div class="mt-0.5 font-mono tabular-nums text-ink-900"><span id="tipCumul">£0</span> earned to date</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-2 flex justify-between text-[10px] text-ink-400 font-mono">
+                  <span>Day 1</span>
+                  <span>Day <span id="chartXMid">45</span></span>
+                  <span>Day <span id="chartXMax">90</span></span>
+                </div>
+                <div class="mt-1 text-[10px] uppercase tracking-[0.18em] text-ink-400 text-center">Days</div>
+              </div>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-brand-500/10">
+              <div>
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Total retainer</div>
+                <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-900" id="cumRetainerOut">£1,602.74</div>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Total commission</div>
+                <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-900" id="cumCommissionOut">£100,000</div>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Grand total</div>
+                <div class="mt-1.5 text-lg font-medium tabular-nums text-brand-600" id="cumTotalOut">£101,602.74</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-9 pt-6" style="border-top:1px solid rgba(38,79,203,0.10);">
+        <div class="flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.18em] text-ink-500">
+          <div>Brand pays <span class="text-ink-800 font-medium">£0 upfront</span></div>
+          <div>Creator paid <span class="text-ink-800 font-medium">fixed retainer</span></div>
+          <div>Commission <span class="text-ink-800 font-medium">only on verified sales</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── MARKETPLACE ───────────────────────── -->
+<section id="live" class="relative">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-4 sm:py-6">
+
+    <div class="reveal flex items-end justify-between flex-wrap gap-3 mb-3">
+      <div class="max-w-2xl">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Live on Backed</div>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+          Live <span class="text-ink-400 font-serif italic">Campaigns.</span>
+        </h2>
+      </div>
+      <p class="text-ink-600 max-w-md text-[13px] leading-snug">
+        Incentive driven marketing — results based, win win.
+      </p>
+    </div>
+
+    <!-- Tab pill -->
+    <div class="relative inline-flex hairline rounded-2xl p-1 bg-white" role="tablist" id="marketTabs">
+      <span id="marketTabIndicator" class="tab-indicator" style="width:96px; transform:translateX(0)"></span>
+      <button class="tab-btn relative z-10 px-5 py-2.5 text-sm font-medium tracking-tight rounded-xl" data-mtab="vaults"  data-active="true">Campaigns</button>
+      <button class="tab-btn relative z-10 px-5 py-2.5 text-sm font-medium tracking-tight rounded-xl" data-mtab="brand"   data-active="false">Brands</button>
+      <button class="tab-btn relative z-10 px-5 py-2.5 text-sm font-medium tracking-tight rounded-xl" data-mtab="creator" data-active="false">Creators</button>
+    </div>
+
+    <!-- ─── VAULTS panel ─── -->
+    <div class="mt-3" id="mpanel-vaults">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+
+        <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-emerald-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-500 live-dot"></span>
+              Live · Day 47
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">90d</span>
+          </div>
+          <div class="mt-4">
+            <div class="text-lg font-medium tracking-tight text-ink-900">Sports brand</div>
+            <div class="text-sm text-ink-500">with <span class="text-brand-600">Sportsman</span></div>
+          </div>
+          <div class="mt-2 grid grid-cols-3 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Creator retainer</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">£1,500</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-brand-600">33.33%</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">3×</div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign value</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-ink-900">£75,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission earned</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-brand-600">£28,500</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-emerald-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-500 live-dot"></span>
+              Live · Day 30
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">365d</span>
+          </div>
+          <div class="mt-4">
+            <div class="text-lg font-medium tracking-tight text-ink-900">Hospitality brand</div>
+            <div class="text-sm text-ink-500">with <span class="text-brand-600">Travel influencer</span></div>
+          </div>
+          <div class="mt-2 grid grid-cols-3 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Creator retainer</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">£20,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-brand-600">25.00%</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">4×</div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign value</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-ink-900">£1,000,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission earned</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-brand-600">£180,000</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-emerald-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-500 live-dot"></span>
+              Live · Day 12
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">90d</span>
+          </div>
+          <div class="mt-4">
+            <div class="text-lg font-medium tracking-tight text-ink-900">Beauty brand</div>
+            <div class="text-sm text-ink-500">with <span class="text-brand-600">Beauty influencer</span></div>
+          </div>
+          <div class="mt-2 grid grid-cols-3 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Creator retainer</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">£750</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-brand-600">40.00%</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">2.5×</div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign value</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-ink-900">£40,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission earned</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-brand-600">£5,600</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-emerald-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-500 live-dot"></span>
+              Live · Day 64
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">180d</span>
+          </div>
+          <div class="mt-4">
+            <div class="text-lg font-medium tracking-tight text-ink-900">Luxury fashion brand</div>
+            <div class="text-sm text-ink-500">with <span class="text-brand-600">Fashion influencer</span></div>
+          </div>
+          <div class="mt-2 grid grid-cols-3 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Creator retainer</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">£5,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-brand-600">28.57%</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">3.5×</div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign value</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-ink-900">£250,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission earned</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-brand-600">£155,000</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-amber-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              Funding · Day 0
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">365d</span>
+          </div>
+          <div class="mt-4">
+            <div class="text-lg font-medium tracking-tight text-ink-900">Outdoor brand</div>
+            <div class="text-sm text-ink-500">with <span class="text-brand-600">Adventure creator</span></div>
+          </div>
+          <div class="mt-2 grid grid-cols-3 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Creator retainer</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">£10,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-brand-600">25.00%</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">4×</div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign value</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-ink-900">£500,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission earned</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-brand-600">£0</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-rose-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+              Finished · Day 90
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">90d</span>
+          </div>
+          <div class="mt-4">
+            <div class="text-lg font-medium tracking-tight text-ink-900">Food brand</div>
+            <div class="text-sm text-ink-500">with <span class="text-brand-600">Celebrity cook</span></div>
+          </div>
+          <div class="mt-2 grid grid-cols-3 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Creator retainer</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">£2,500</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-brand-600">33.33%</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+              <div class="mt-1 text-base font-medium tabular-nums text-ink-900">3×</div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-3 pt-2 border-t border-brand-500/10">
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign value</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-ink-900">£125,000</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission earned</div>
+              <div class="mt-1 text-xl font-medium tabular-nums tracking-tight text-brand-600">£125,000</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <div class="mt-6 flex items-center justify-between text-sm text-ink-500">
+        <span>Showing 6 of 142 live campaigns</span>
+        <a href="#" data-signup class="text-brand-600 hover:text-brand-700 font-medium">Browse the marketplace →</a>
+      </div>
+    </div>
+
+    <!-- ─── BRAND example panel ─── -->
+    <div class="mt-7 hidden" id="mpanel-brand">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
+
+        <div class="lg:col-span-2 card p-6 sm:p-8 relative overflow-hidden">
+          <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-brand-200/30 blur-3xl pointer-events-none"></div>
+          <div class="relative">
+            <div class="flex items-center justify-between flex-wrap gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-emerald-600">
+                <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-500 live-dot"></span>
+                Live · Day 47 of 90
+              </span>
+              <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">Anonymized example · Sports brand</span>
+            </div>
+            <h3 class="mt-5 text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink-900">Sports brand</h3>
+            <p class="mt-2 text-ink-600 max-w-xl">Performance apparel label. First Backed campaign with a Sportsman — 90-day window, 3× ROAS target, £75,000 campaign.</p>
+
+            <div class="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div class="hairline rounded-xl p-4 bg-paper-50">
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
+                <div class="mt-1.5 text-xl font-medium tabular-nums text-ink-900">£75,000</div>
+              </div>
+              <div class="hairline rounded-xl p-4 bg-paper-50">
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Revenue (47d)</div>
+                <div class="mt-1.5 text-xl font-medium tabular-nums text-ink-900">£142,300</div>
+              </div>
+              <div class="hairline rounded-xl p-4 bg-paper-50">
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">ROAS</div>
+                <div class="mt-1.5 text-xl font-medium tabular-nums text-brand-600">3.41×</div>
+              </div>
+              <div class="hairline rounded-xl p-4 bg-paper-50">
+                <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Cash paid out</div>
+                <div class="mt-1.5 text-xl font-medium tabular-nums text-ink-900">£47,433</div>
+              </div>
+            </div>
+
+            <figure class="mt-8 border-l-2 border-brand-300 pl-4">
+              <blockquote class="text-lg font-serif italic text-ink-800 leading-snug">
+                "We used to spend £30k on a creative shoot before knowing if it would work. Now the only money that leaves our account is commission on actual orders."
+              </blockquote>
+              <figcaption class="mt-3 text-sm text-ink-500">— Founder, Sports brand</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="space-y-4 sm:space-y-5">
+          <div class="card p-6">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">What the brand actually pays</div>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-ink-700">Setup fee</span>
+                <span class="font-mono text-ink-900">£0</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-ink-700">Monthly SaaS</span>
+                <span class="font-mono text-ink-900">£0</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-ink-700">Creator retainer</span>
+                <span class="font-mono text-ink-900">£0</span>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-brand-500/10">
+                <span class="text-sm text-ink-800 font-medium">Commission on £142,300 sales</span>
+                <span class="font-mono text-brand-600 font-medium">£47,433</span>
+              </div>
+            </div>
+          </div>
+          <div class="card p-6">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Channels driving sales</div>
+            <ul class="mt-4 space-y-3 text-sm text-ink-700">
+              <li class="flex items-center justify-between"><span>Instagram Reels</span><span class="font-mono text-ink-900">58%</span></li>
+              <li class="flex items-center justify-between"><span>TikTok</span><span class="font-mono text-ink-900">26%</span></li>
+              <li class="flex items-center justify-between"><span>YouTube Shorts</span><span class="font-mono text-ink-900">11%</span></li>
+              <li class="flex items-center justify-between"><span>Newsletter</span><span class="font-mono text-ink-900">5%</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── CREATOR example panel ─── -->
+    <div class="mt-7 hidden" id="mpanel-creator">
+      <!-- Intro -->
+      <div class="card p-6 sm:p-8 mb-5 relative overflow-hidden">
+        <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-brand-200/30 blur-3xl pointer-events-none"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-mono text-emerald-600">
+              <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-500 live-dot"></span>
+              Earnings calculator
+            </span>
+            <span class="text-[10px] uppercase tracking-[0.18em] text-ink-400 font-mono">90 days · 3× target</span>
+          </div>
+          <h3 class="mt-4 text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink-900">What a creator earns</h3>
+          <p class="mt-3 text-ink-600 max-w-2xl">Every Backed deal guarantees a retainer paid to start the campaign, plus commission unlocked sale by sale. Here's what the numbers look like across the most common brand-deal sizes.</p>
+        </div>
+      </div>
+
+      <!-- Tier rows -->
+      <div class="space-y-3 sm:space-y-4">
+
+        <div class="card p-5 sm:p-6 grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 items-center">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Brand deal</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-ink-900">£50k</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Monthly avg</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£17,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Retainer total (90d)</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£1,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission if target hit</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£50,000</div>
+          </div>
+          <div class="md:text-right">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Max earnings</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-brand-600">£51,000</div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6 grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 items-center">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Brand deal</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-ink-900">£100k</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Monthly avg</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£34,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Retainer total (90d)</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£2,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission if target hit</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£100,000</div>
+          </div>
+          <div class="md:text-right">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Max earnings</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-brand-600">£102,000</div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6 grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 items-center">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Brand deal</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-ink-900">£250k</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Monthly avg</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£85,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Retainer total (90d)</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£5,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission if target hit</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£250,000</div>
+          </div>
+          <div class="md:text-right">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Max earnings</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-brand-600">£255,000</div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6 grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 items-center">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Brand deal</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-ink-900">£500k</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Monthly avg</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£170,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Retainer total (90d)</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£10,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission if target hit</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£500,000</div>
+          </div>
+          <div class="md:text-right">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Max earnings</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-brand-600">£510,000</div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6 grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 items-center bg-brand-50/40 border-brand-200">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Brand deal</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-ink-900">£1M</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Monthly avg</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£340,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Retainer total (90d)</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£20,000</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Commission if target hit</div>
+            <div class="mt-1.5 text-lg font-medium tabular-nums text-ink-700">£1,000,000</div>
+          </div>
+          <div class="md:text-right">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Max earnings</div>
+            <div class="mt-1.5 text-2xl font-medium tabular-nums text-brand-600">£1,020,000</div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="mt-5 text-xs text-ink-400 text-center">Retainer paid by Backed throughout the campaign regardless of sales. Commission unlocks per verified sale up to deposit size. Numbers assume 90-day window, 3× ROAS target.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ───────────────────────── HOW IT WORKS ───────────────────────── -->
+<section id="how" class="relative">
+  <div class="absolute inset-0 bg-grid opacity-60 mask-fade-edges pointer-events-none"></div>
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-6 sm:py-8">
+
+    <div class="reveal mb-5 max-w-3xl">
+      <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">How it works</div>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+        Four Steps. <span class="text-ink-400 font-serif italic">Aligned Incentives.</span>
+      </h2>
+    </div>
+
+    <div class="relative">
+      <div class="hidden md:block absolute top-[68px] left-[12%] right-[12%] step-line"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+        <div class="reveal card p-5">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 01</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">lock</span>
+          </div>
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <rect x="3.5" y="4.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="11" cy="12" r="3.2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 7.8v.8M11 15.4v.8M6.8 12h.8M14.4 12h.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M17.5 17.5v2M6.5 17.5v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-medium tracking-[-0.02em] text-ink-900">Deposit</h3>
+          <p class="mt-2 text-ink-600 leading-snug text-[14px]">
+            Brand sends campaign budget to Backed. Bank-grade security, fully insured.
+          </p>
+        </div>
+
+        <div class="reveal card p-5" style="transition-delay:60ms">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 02</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">agree</span>
+          </div>
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M3 12l4-4 4 4M13 12l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 8v8a2 2 0 002 2h6a2 2 0 002-2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M10 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-medium tracking-[-0.02em] text-ink-900">Agree</h3>
+          <p class="mt-2 text-ink-600 leading-snug text-[14px]">
+            Brand and creator lock in the deliverables (post types, frequency, brand guidelines and ROAS target) — the agreement runs for the full campaign duration.
+          </p>
+        </div>
+
+        <div class="reveal card p-5" style="transition-delay:120ms">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 03</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">fund</span>
+          </div>
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <ellipse cx="12" cy="7"  rx="7" ry="2.6" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5 7v5c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5 12v5c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-medium tracking-[-0.02em] text-ink-900">Fund</h3>
+          <p class="mt-2 text-ink-600 leading-snug text-[14px]">
+            Backed pays the creator a guaranteed initial retainer fee — to fund the creator's campaign requirements.
+          </p>
+        </div>
+
+        <div class="reveal card p-5" style="transition-delay:180ms">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-400">step 04</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600">settle</span>
+          </div>
+          <div class="mt-4 w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M13 3L5 14h6l-1 7 9-12h-6l0-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-medium tracking-[-0.02em] text-ink-900">Settle</h3>
+          <p class="mt-2 text-ink-600 leading-snug text-[14px]">
+            Shopify / Amazon webhooks instantly release commission on verified sales. Real-time, fully reconciled.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal mt-5 max-w-3xl text-ink-700 text-[15px] sm:text-[16px] leading-snug">
+      Stop leaking ad budget on platform fees and service retainers — pass all commissions to creators in an incentive-driven structure.
+    </p>
+  </div>
+</section>
+
+
+<!-- ───────────────────────── SIGN-UP BONUS ───────────────────────── -->
+<section id="bonus" class="relative">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-6 sm:py-8">
+
+    <div class="reveal flex items-end justify-between flex-wrap gap-3 mb-5">
+      <div class="max-w-2xl">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Sign-up bonus · launch promotion</div>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+          Up to a <span class="text-brand-600">£1,000</span> Amazon gift voucher.
+        </h2>
+      </div>
+      <p class="text-ink-600 max-w-md text-[13px] leading-snug">
+        Paid to <span class="text-ink-900 font-medium">both</span> the brand and the creator on each new deal. Also earn the same voucher on any new business you refer to Backed. One per deal.
+      </p>
+    </div>
+
+    <div class="card-strong p-4 sm:p-6">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+
+        <div class="hairline rounded-xl p-4 bg-paper-50">
+          <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
+          <div class="mt-2 text-base font-medium tabular-nums tracking-tight text-ink-900">£30k — £50k</div>
+          <div class="mt-3 pt-3 border-t border-brand-500/10">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Voucher</div>
+            <div class="mt-1 text-2xl font-medium tabular-nums tracking-tight text-brand-600">£50</div>
+          </div>
+        </div>
+
+        <div class="hairline rounded-xl p-4 bg-paper-50">
+          <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
+          <div class="mt-2 text-base font-medium tabular-nums tracking-tight text-ink-900">£100k</div>
+          <div class="mt-3 pt-3 border-t border-brand-500/10">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Voucher</div>
+            <div class="mt-1 text-2xl font-medium tabular-nums tracking-tight text-brand-600">£100</div>
+          </div>
+        </div>
+
+        <div class="hairline rounded-xl p-4 bg-paper-50">
+          <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
+          <div class="mt-2 text-base font-medium tabular-nums tracking-tight text-ink-900">£250k</div>
+          <div class="mt-3 pt-3 border-t border-brand-500/10">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Voucher</div>
+            <div class="mt-1 text-2xl font-medium tabular-nums tracking-tight text-brand-600">£200</div>
+          </div>
+        </div>
+
+        <div class="hairline rounded-xl p-4 bg-paper-50">
+          <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
+          <div class="mt-2 text-base font-medium tabular-nums tracking-tight text-ink-900">£500k</div>
+          <div class="mt-3 pt-3 border-t border-brand-500/10">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Voucher</div>
+            <div class="mt-1 text-2xl font-medium tabular-nums tracking-tight text-brand-600">£250</div>
+          </div>
+        </div>
+
+        <div class="hairline rounded-xl p-4 bg-brand-50/60">
+          <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Campaign budget</div>
+          <div class="mt-2 text-base font-medium tabular-nums tracking-tight text-ink-900">£1M+</div>
+          <div class="mt-3 pt-3 border-t border-brand-500/10">
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ink-400">Voucher</div>
+            <div class="mt-1 text-2xl font-medium tabular-nums tracking-tight text-brand-600">£1,000</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3 text-[13px] text-ink-600">
+        <div class="flex items-start gap-2">
+          <span class="inline-flex w-6 h-6 rounded-md bg-brand-50 items-center justify-center text-brand-600 shrink-0 mt-0.5">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span><span class="text-ink-900 font-medium">Both sides.</span> Brand and creator each receive the voucher.</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="inline-flex w-6 h-6 rounded-md bg-brand-50 items-center justify-center text-brand-600 shrink-0 mt-0.5">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <span><span class="text-ink-900 font-medium">Refer &amp; earn.</span> Same voucher tier on any new brand or creator you introduce.</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="inline-flex w-6 h-6 rounded-md bg-brand-50 items-center justify-center text-brand-600 shrink-0 mt-0.5">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <span><span class="text-ink-900 font-medium">One per deal.</span> Paid once per campaign, on launch.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── FAQ ───────────────────────── -->
+<section id="faq" class="relative">
+  <div class="mx-auto max-w-4xl px-5 sm:px-8 py-8 sm:py-12">
+    <div class="reveal mb-5">
+      <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">FAQ</div>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+        Reasonable questions.
+      </h2>
+    </div>
+    <div class="card divide-y divide-brand-500/10 overflow-hidden">
+      <details class="group p-6 open:bg-paper-50">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[17px] tracking-tight text-ink-900">What can brands ask creators to do?</span>
+          <span class="text-ink-400 group-open:rotate-45 transition">+</span>
+        </summary>
+        <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
+          Brands and creators agree on the deliverables before a campaign starts — post types (Reels, Shorts, TikToks, stories, long-form), posting frequency, brand guidelines (tone, do's &amp; don'ts, FTC-style disclosures), and the ROAS target. Once locked in, the agreement is binding for the full campaign duration. Brands can request reasonable revisions but cannot change scope mid-campaign without creator consent.
+        </p>
+      </details>
+      <details class="group p-6 open:bg-paper-50">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[17px] tracking-tight text-ink-900">How does Backed pay the creator if the brand pays nothing upfront?</span>
+          <span class="text-ink-400 group-open:rotate-45 transition">+</span>
+        </summary>
+        <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
+          Backed parks the deposit in low-volatility preferential shares to generate a yield that funds the creator's retainer and the platform. The brand never funds the creator out of pocket — and the principal stays whole, refundable within 60 days of cancellation.
+        </p>
+      </details>
+      <details class="group p-6 open:bg-paper-50">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[17px] tracking-tight text-ink-900">What counts as a "verified sale"?</span>
+          <span class="text-ink-400 group-open:rotate-45 transition">+</span>
+        </summary>
+        <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
+          A webhook from your commerce provider (Shopify, Amazon, Stripe, etc.) marking an order as paid &amp; non-refunded after the return window. Refunds rebate the bounty back to principal.
+        </p>
+      </details>
+      <details class="group p-6 open:bg-paper-50">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[17px] tracking-tight text-ink-900">Can the brand cancel a campaign?</span>
+          <span class="text-ink-400 group-open:rotate-45 transition">+</span>
+        </summary>
+        <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
+          Yes — brands can cancel at any time. The campaign terminates 30 days after the cancellation notice (so the creator has 30 days of advance warning), and any unspent budget returns within a further 30 days. Total: 60 days from cancellation to a full refund (minus paid commissions).
+        </p>
+      </details>
+      <details class="group p-6 open:bg-paper-50">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[17px] tracking-tight text-ink-900">What happens if the campaign over-performs?</span>
+          <span class="text-ink-400 group-open:rotate-45 transition">+</span>
+        </summary>
+        <p class="mt-3 text-ink-600 text-[15px] leading-relaxed">
+          The budget drains to zero at exactly <span class="font-mono text-brand-600">target ROAS</span> revenue. Every £1 of revenue beyond that is pure margin to the brand — Backed and the creator earn nothing further on the excess.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── CTA ───────────────────────── -->
+<section id="cta" class="relative">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 pb-28">
+    <div class="card-strong relative overflow-hidden p-10 sm:p-16">
+      <div class="absolute -top-32 -right-32 w-[420px] h-[420px] bg-brand-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute inset-0 bg-grid opacity-50 mask-fade-edges pointer-events-none"></div>
+      <div class="relative max-w-3xl">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Launch</div>
+        <h2 class="mt-3 text-5xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1] text-ink-900">
+          Stop spending on hope. <span class="text-ink-400 font-serif italic">Sponsor effective creators.</span>
+        </h2>
+        <p class="mt-6 text-ink-600 text-[17px] leading-relaxed max-w-xl">
+          Spin up your first campaign in under five minutes. Invite a creator. Watch verified revenue land.<br /><br />
+          Register your interest and we will pair you with a suitable Creator / Brand.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#" data-signup class="group inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3.5 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
+            Interested?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="transition group-hover:translate-x-0.5"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" data-contact class="inline-flex items-center justify-center gap-2 hairline bg-white hover:bg-paper-50 px-5 py-3.5 rounded-xl text-ink-800 transition">
+            Talk to founders
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── FOOTER ───────────────────────── -->
+<footer class="border-t border-brand-500/10 bg-white/60">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-sm text-ink-500">
+    <div class="flex items-center gap-2.5">
+      <span class="relative inline-flex w-2 h-2 rounded-full bg-brand-500"></span>
+      <span class="text-ink-900 font-semibold tracking-tight">Backed</span>
+      <span>· Exclusive 6&amp;7 figure brand deals</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="privacy.html" class="hover:text-ink-800">Privacy</a>
+      <a href="terms.html" class="hover:text-ink-800">Terms</a>
+      <a href="financials.html" class="hover:text-ink-800">Backed Financials</a>
+    </div>
+    <div class="font-mono text-[11px] tracking-[0.2em] uppercase">© 2026 Backed Limited</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+/* Retainer tiers: anchor points for total creator retainer by budget size.
+   Linear interpolation between anchors. */
+const RETAINER_TIERS = [
+  { budget:   30000, retainer:   500 },
+  { budget:   50000, retainer:  1000 },
+  { budget:  100000, retainer:  2000 },
+  { budget:  250000, retainer:  5000 },
+  { budget:  500000, retainer: 10000 },
+  { budget: 1000000, retainer: 20000 },
+  { budget: 2000000, retainer: 50000 },
+];
+function totalRetainerFor(budget) {
+  if (budget <= RETAINER_TIERS[0].budget) return RETAINER_TIERS[0].retainer;
+  for (let i = 1; i < RETAINER_TIERS.length; i++) {
+    const prev = RETAINER_TIERS[i - 1], next = RETAINER_TIERS[i];
+    if (budget <= next.budget) {
+      const t = (budget - prev.budget) / (next.budget - prev.budget);
+      return prev.retainer + t * (next.retainer - prev.retainer);
+    }
+  }
+  return RETAINER_TIERS[RETAINER_TIERS.length - 1].retainer;
+}
+
+const gbp = new Intl.NumberFormat('en-GB', {
+  style: 'currency', currency: 'GBP',
+  minimumFractionDigits: 2, maximumFractionDigits: 2,
+});
+const gbpNoDecimals = new Intl.NumberFormat('en-GB', {
+  style: 'currency', currency: 'GBP',
+  maximumFractionDigits: 0,
+});
+const intFmt = new Intl.NumberFormat('en-GB');
+
+const els = {
+  principal: document.getElementById('principal'),
+  duration:  document.getElementById('duration'),
+  roas:      document.getElementById('roas'),
+  principalOut: document.getElementById('principalOut'),
+  durationOut: document.getElementById('durationOut'),
+  roasOut: document.getElementById('roasOut'),
+  roasCommissionOut: document.getElementById('roasCommissionOut'),
+  brandRevenueTarget: document.getElementById('brandRevenueTarget'),
+  brandCommission:    document.getElementById('brandCommission'),
+  brandRoasLabel:     document.getElementById('brandRoasLabel'),
+  brandWorstAmount:   document.getElementById('brandWorstAmount'),
+  brandBestAmount:    document.getElementById('brandBestAmount'),
+  creatorRetainerTotal: document.getElementById('creatorRetainerTotal'),
+  creatorGrant:    document.getElementById('creatorGrant'),
+  creatorBounty:   document.getElementById('creatorBounty'),
+  incomeRetainer:   document.getElementById('incomeRetainer'),
+  incomeCommission: document.getElementById('incomeCommission'),
+  incomeTotal:      document.getElementById('incomeTotal'),
+  cumRetainerOut:   document.getElementById('cumRetainerOut'),
+  cumCommissionOut: document.getElementById('cumCommissionOut'),
+  cumTotalOut:      document.getElementById('cumTotalOut'),
+  chartYMax:        document.getElementById('chartYMax'),
+  chartYMid:        document.getElementById('chartYMid'),
+  chartXMax:        document.getElementById('chartXMax'),
+  chartXMid:        document.getElementById('chartXMid'),
+};
+
+function setFill(el) {
+  if (!el || el.type !== 'range') return;
+  const min = +el.min, max = +el.max, val = +el.value;
+  const pct = ((val - min) / (max - min)) * 100;
+  el.style.setProperty('--fill', pct + '%');
+}
+
+function compute() {
+  const principal = +els.principal.value;
+  const durationDays = +els.duration.value;
+  const targetRoas = +els.roas.value;
+
+  const creatorTotalYield = totalRetainerFor(principal);
+  const creatorDailyStipend = creatorTotalYield / durationDays;
+  const commissionRate = 1 / targetRoas;
+  const targetSalesVolume = principal * targetRoas;
+
+  return { principal, durationDays, targetRoas, creatorTotalYield, creatorDailyStipend, commissionRate, targetSalesVolume };
+}
+
+function render() {
+  setFill(els.principal); setFill(els.duration); setFill(els.roas);
+  const s = compute();
+
+  els.principalOut.textContent = gbpNoDecimals.format(s.principal);
+  if (els.durationOut) els.durationOut.textContent = intFmt.format(s.durationDays);
+  if (els.roasOut)     els.roasOut.textContent     = intFmt.format(s.targetRoas);
+  if (els.roasCommissionOut) els.roasCommissionOut.textContent = (s.commissionRate * 100).toFixed(2) + '%';
+
+  els.brandRevenueTarget.textContent = gbpNoDecimals.format(s.targetSalesVolume);
+  els.brandCommission.textContent    = (s.commissionRate * 100).toFixed(2) + '%';
+  els.brandRoasLabel.textContent     = s.targetRoas;
+  els.brandWorstAmount.textContent   = gbpNoDecimals.format(s.principal);
+  els.brandBestAmount.textContent    = gbpNoDecimals.format(s.targetSalesVolume);
+
+  els.creatorRetainerTotal.textContent = gbpNoDecimals.format(s.creatorTotalYield);
+  els.creatorGrant.textContent      = gbpNoDecimals.format(s.creatorTotalYield + s.principal);
+  els.creatorBounty.textContent     = gbpNoDecimals.format(s.principal);
+
+  drawChart(s);
+}
+
+let chartState = { series: [], days: 0, pad: 4, W: 600, H: 160, maxY: 1 };
+function drawChart(s) {
+  const W = 600, H = 160, pad = 4;
+  const days = s.durationDays;
+  const retainerDaily = s.creatorDailyStipend;
+
+  // Commission curve: zero for first 2 days, then a steep sigmoid ramp from day 3 onwards.
+  // Normalise so cumulative commission equals the principal (i.e. target ROAS is met).
+  const rawDaily = new Array(days);
+  let rawSum = 0;
+  for (let d = 1; d <= days; d++) {
+    const t = d / days;
+    const raw = d < 3 ? 0 : 1 / (1 + Math.exp(-12 * (t - 0.15)));
+    rawDaily[d - 1] = raw;
+    rawSum += raw;
+  }
+  const commissionScale = rawSum > 0 ? s.principal / rawSum : 0;
+
+  // Retainer is paid in full on day 1, then constant for the rest of the campaign.
+  const totalRetainer = s.creatorTotalYield;
+  const series = [];
+  let cumCommission = 0;
+  for (let d = 1; d <= days; d++) {
+    const dailyCommission = rawDaily[d - 1] * commissionScale;
+    cumCommission += dailyCommission;
+    series.push({ cumRetainer: totalRetainer, cumCommission, cumTotal: totalRetainer + cumCommission });
+  }
+  const maxY = series.length ? series[series.length - 1].cumTotal : 1;
+  const safeMax = maxY === 0 ? 1 : maxY;
+
+  const stepX = (W - pad*2) / (days - 1 || 1);
+  const xAt = (i) => (pad + i * stepX).toFixed(1);
+  const yAt = (val) => (H - pad - (val / safeMax) * (H - pad*2)).toFixed(1);
+
+  // Retainer area: baseline → cumulative retainer line → baseline (linear ramp)
+  let retainerPath = `M${xAt(0)},${H-pad}`;
+  for (let i = 0; i < days; i++) retainerPath += ` L${xAt(i)},${yAt(series[i].cumRetainer)}`;
+  retainerPath += ` L${xAt(days-1)},${H-pad} Z`;
+
+  // Commission area: stacked on top of cumulative retainer (between retainer line and total line)
+  let commissionPath = '';
+  for (let i = 0; i < days; i++) {
+    commissionPath += (i === 0 ? 'M' : ' L') + `${xAt(i)},${yAt(series[i].cumTotal)}`;
+  }
+  for (let i = days - 1; i >= 0; i--) {
+    commissionPath += ` L${xAt(i)},${yAt(series[i].cumRetainer)}`;
+  }
+  commissionPath += ' Z';
+
+  // Total line (top of stack)
+  let totalLine = '';
+  for (let i = 0; i < days; i++) {
+    totalLine += (i === 0 ? 'M' : ' L') + `${xAt(i)},${yAt(series[i].cumTotal)}`;
+  }
+
+  els.incomeRetainer.setAttribute('d', retainerPath);
+  els.incomeCommission.setAttribute('d', commissionPath);
+  els.incomeTotal.setAttribute('d', totalLine);
+
+  els.cumRetainerOut.textContent   = gbpNoDecimals.format(totalRetainer);
+  els.cumCommissionOut.textContent = gbpNoDecimals.format(cumCommission);
+  els.cumTotalOut.textContent      = gbpNoDecimals.format(totalRetainer + cumCommission);
+
+  els.chartYMax.textContent = gbpNoDecimals.format(maxY);
+  els.chartYMid.textContent = gbpNoDecimals.format(maxY / 2);
+  els.chartXMax.textContent = days;
+  els.chartXMid.textContent = Math.round(days / 2);
+
+  chartState = { series, days, pad, W, H, maxY };
+}
+
+['principal','roas'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', render);
+  el.addEventListener('change', render);
+});
+
+/* Duration segmented control (Brands tab) */
+document.querySelectorAll('.dur-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dur-opt').forEach(b => b.dataset.active = 'false');
+    btn.dataset.active = 'true';
+    document.getElementById('duration').value = btn.dataset.value;
+    render();
+  });
+});
+
+render();
+
+/* Tabs */
+const tabs = document.getElementById('tabs');
+const tabIndicator = document.getElementById('tabIndicator');
+const tabBtns = tabs.querySelectorAll('.tab-btn');
+const panels = {
+  brand:   document.getElementById('panel-brand'),
+  creator: document.getElementById('panel-creator'),
+};
+function positionIndicator(btn) {
+  const r = btn.getBoundingClientRect();
+  const parentR = tabs.getBoundingClientRect();
+  tabIndicator.style.width = (r.width - 8) + 'px';
+  tabIndicator.style.transform = `translateX(${r.left - parentR.left}px)`;
+}
+requestAnimationFrame(() => positionIndicator(tabBtns[0]));
+window.addEventListener('resize', () => {
+  const active = tabs.querySelector('[data-active="true"]');
+  if (active) positionIndicator(active);
+});
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.dataset.active = 'false');
+    btn.dataset.active = 'true';
+    positionIndicator(btn);
+    const which = btn.dataset.tab;
+    Object.entries(panels).forEach(([k, p]) => p.classList.toggle('hidden', k !== which));
+    // Toggle slider controls: brand-only vs creator-only
+    document.querySelectorAll('.brand-only').forEach(el => el.classList.toggle('hidden', which !== 'brand'));
+    document.querySelectorAll('.creator-only').forEach(el => el.classList.toggle('hidden', which !== 'creator'));
+    render();
+  });
+});
+
+/* Nav deep-links to engine tabs */
+document.querySelectorAll('a[data-engine-tab]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const which = link.dataset.engineTab;
+    const tabBtn = document.querySelector(`.tab-btn[data-tab="${which}"]`);
+    if (tabBtn) tabBtn.click();
+  });
+});
+
+/* Marketplace tabs */
+const marketTabs = document.getElementById('marketTabs');
+const marketIndicator = document.getElementById('marketTabIndicator');
+const marketBtns = marketTabs.querySelectorAll('[data-mtab]');
+const marketPanels = {
+  vaults:  document.getElementById('mpanel-vaults'),
+  brand:   document.getElementById('mpanel-brand'),
+  creator: document.getElementById('mpanel-creator'),
+};
+function positionMarketIndicator(btn) {
+  const r = btn.getBoundingClientRect();
+  const parentR = marketTabs.getBoundingClientRect();
+  marketIndicator.style.width = (r.width - 8) + 'px';
+  marketIndicator.style.transform = `translateX(${r.left - parentR.left}px)`;
+}
+requestAnimationFrame(() => positionMarketIndicator(marketBtns[0]));
+window.addEventListener('resize', () => {
+  const active = marketTabs.querySelector('[data-active="true"]');
+  if (active) positionMarketIndicator(active);
+});
+marketBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    marketBtns.forEach(b => b.dataset.active = 'false');
+    btn.dataset.active = 'true';
+    positionMarketIndicator(btn);
+    const which = btn.dataset.mtab;
+    Object.entries(marketPanels).forEach(([k, p]) => p.classList.toggle('hidden', k !== which));
+  });
+});
+
+/* Kinetic Typography on load */
+window.addEventListener('load', () => {
+  const words = document.querySelectorAll('#kineticHeadline .kt-word');
+  words.forEach((w, i) => {
+    setTimeout(() => w.classList.add('kt-in'), 120 + i * 140);
+  });
+});
+
+/* Reveal on scroll */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      io.unobserve(e.target);
+    }
+  });
+}, { rootMargin: '-10% 0px -10% 0px', threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+document.querySelectorAll('main > section:first-of-type .reveal').forEach(el => el.classList.add('show'));
+
+/* Reset scroll on page refresh */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('load', () => window.scrollTo(0, 0));
+
+/* Split-flap rotating tagline (next to the Backed logo) */
+(function setupFlipBoard() {
+  const board = document.getElementById('flipBoard');
+  if (!board) return;
+  const messages = ['Exclusive 6&7 figure brand deals', 'Marketing re-invented'];
+  let idx = 0;
+  const STAGGER = 22;   // ms between consecutive char flips
+  const FLIP_MS = 180;  // single-char flip duration (matches CSS)
+
+  function paint(text) {
+    board.innerHTML = '';
+    [...text].forEach(ch => {
+      const span = document.createElement('span');
+      span.className = 'flip-char';
+      span.innerHTML = ch === ' ' ? '&nbsp;' : ch;
+      board.appendChild(span);
+    });
+  }
+  function flipTo(text) {
+    const chars = board.querySelectorAll('.flip-char');
+    chars.forEach((c, i) => {
+      setTimeout(() => {
+        c.style.transform = 'rotateX(-90deg)';
+        c.style.opacity = '0';
+      }, i * STAGGER);
+    });
+    const flipOutTotal = (chars.length - 1) * STAGGER + FLIP_MS;
+    setTimeout(() => {
+      paint(text);
+      const newChars = board.querySelectorAll('.flip-char');
+      newChars.forEach((c, i) => {
+        c.style.transform = 'rotateX(90deg)';
+        c.style.opacity = '0';
+        setTimeout(() => {
+          c.style.transform = 'rotateX(0deg)';
+          c.style.opacity = '1';
+        }, 10 + i * STAGGER);
+      });
+    }, flipOutTotal);
+  }
+
+  paint(messages[0]);
+  setInterval(() => {
+    idx = (idx + 1) % messages.length;
+    flipTo(messages[idx]);
+  }, 10000);
+})();
+
+/* Chart hover tooltip */
+(function setupChartHover() {
+  const hover = document.getElementById('chartHover');
+  const svg = document.getElementById('incomeChart');
+  const guideLine = document.getElementById('chartGuideLine');
+  const guideDot = document.getElementById('chartGuideDot');
+  const tooltip = document.getElementById('chartTooltip');
+  const tipDay = document.getElementById('tipDay');
+  const tipCumul = document.getElementById('tipCumul');
+  if (!hover || !svg) return;
+
+  function onMove(e) {
+    const { series, days, pad, W, H, maxY } = chartState;
+    if (!series.length) return;
+    const rect = svg.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const ratio = Math.min(1, Math.max(0, x / rect.width));
+    const stepX = (W - pad * 2) / (days - 1 || 1);
+    const xViewBox = ratio * W;
+    const idx = Math.min(days - 1, Math.max(0, Math.round((xViewBox - pad) / stepX)));
+    const point = series[idx];
+    if (!point) return;
+    const prevTotal = idx > 0 ? series[idx - 1].cumTotal : 0;
+    const dailyEarn = point.cumTotal - prevTotal;
+    const cx = pad + idx * stepX;
+    const cy = H - pad - (point.cumTotal / maxY) * (H - pad * 2);
+    // Update SVG guide
+    guideLine.setAttribute('x1', cx.toFixed(1));
+    guideLine.setAttribute('x2', cx.toFixed(1));
+    guideLine.setAttribute('y1', '0');
+    guideLine.setAttribute('y2', H);
+    guideLine.setAttribute('opacity', '0.45');
+    guideDot.setAttribute('cx', cx.toFixed(1));
+    guideDot.setAttribute('cy', cy.toFixed(1));
+    guideDot.setAttribute('opacity', '1');
+    // Update tooltip position in rendered px
+    const pxX = (cx / W) * rect.width;
+    const pxY = (cy / H) * rect.height;
+    tooltip.style.left = pxX + 'px';
+    tooltip.style.top = (pxY - 8) + 'px';
+    tooltip.classList.remove('hidden');
+    tipDay.textContent = idx + 1;
+    tipCumul.textContent = gbpNoDecimals.format(point.cumTotal);
+  }
+  function onLeave() {
+    guideLine.setAttribute('opacity', '0');
+    guideDot.setAttribute('opacity', '0');
+    tooltip.classList.add('hidden');
+  }
+  hover.addEventListener('mousemove', onMove);
+  hover.addEventListener('mouseleave', onLeave);
+})();
+
+/* ───────── Sign-up modal ───────── */
+document.addEventListener('DOMContentLoaded', () => {
+  const signupModal = document.getElementById('signupModal');
+  if (!signupModal) return;
+  const signupSteps = {
+    pick:    document.getElementById('signupStep1'),
+    brand:   document.getElementById('signupStep2Brand'),
+    creator: document.getElementById('signupStep2Creator'),
+    done:    document.getElementById('signupSuccess'),
+  };
+  function showSignupStep(key) {
+    Object.entries(signupSteps).forEach(([k, el]) => el.classList.toggle('hidden', k !== key));
+  }
+  function openSignup() {
+    signupModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    showSignupStep('pick');
+  }
+  function closeSignup() {
+    signupModal.classList.add('hidden');
+    document.body.style.overflow = '';
+    document.getElementById('brandForm').reset();
+    document.getElementById('creatorForm').reset();
+  }
+  document.querySelectorAll('[data-signup]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openSignup(); });
+  });
+  signupModal.querySelectorAll('[data-close]').forEach(el => {
+    el.addEventListener('click', closeSignup);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !signupModal.classList.contains('hidden')) closeSignup();
+  });
+  signupModal.querySelectorAll('.signup-path-btn').forEach(btn => {
+    btn.addEventListener('click', () => showSignupStep(btn.dataset.path));
+  });
+  signupModal.querySelectorAll('[data-back]').forEach(btn => {
+    btn.addEventListener('click', () => showSignupStep('pick'));
+  });
+  async function submitToFormspree(form) {
+    const data = new FormData(form);
+    try {
+      const r = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' },
+      });
+      return r.ok;
+    } catch (_) {
+      return false;
+    }
+  }
+  ['brandForm','creatorForm'].forEach(id => {
+    document.getElementById(id).addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = 'Sending…';
+      await submitToFormspree(e.target);
+      btn.disabled = false;
+      btn.innerHTML = original;
+      showSignupStep('done');
+    });
+  });
+
+  /* ───────── Sign-in modal ───────── */
+  const signinModal   = document.getElementById('signinModal');
+  const signinWrap    = document.getElementById('signinForm-wrap');
+  const signinSuccess = document.getElementById('signinSuccess');
+  const signinForm    = document.getElementById('signinForm');
+  function openSignin() {
+    signinModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    signinWrap.classList.remove('hidden');
+    signinSuccess.classList.add('hidden');
+    setTimeout(() => document.getElementById('siEmail').focus(), 60);
+  }
+  function closeSignin() {
+    signinModal.classList.add('hidden');
+    document.body.style.overflow = '';
+    signinForm.reset();
+  }
+  document.querySelectorAll('[data-signin]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openSignin(); });
+  });
+  signinModal.querySelectorAll('[data-close-signin]').forEach(el => {
+    el.addEventListener('click', closeSignin);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !signinModal.classList.contains('hidden')) closeSignin();
+  });
+  signinForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    signinWrap.classList.add('hidden');
+    signinSuccess.classList.remove('hidden');
+  });
+  document.getElementById('switchToSignup').addEventListener('click', (e) => {
+    e.preventDefault();
+    closeSignin();
+    openSignup();
+  });
+
+  /* ───────── Contact modal (Talk to founders) ───────── */
+  const contactModal   = document.getElementById('contactModal');
+  const contactWrap    = document.getElementById('contactForm-wrap');
+  const contactSuccess = document.getElementById('contactSuccess');
+  const contactForm    = document.getElementById('contactForm');
+  function openContact() {
+    contactModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    contactWrap.classList.remove('hidden');
+    contactSuccess.classList.add('hidden');
+    setTimeout(() => document.getElementById('ctName').focus(), 60);
+  }
+  function closeContact() {
+    contactModal.classList.add('hidden');
+    document.body.style.overflow = '';
+    contactForm.reset();
+  }
+  document.querySelectorAll('[data-contact]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openContact(); });
+  });
+  contactModal.querySelectorAll('[data-close-contact]').forEach(el => {
+    el.addEventListener('click', closeContact);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !contactModal.classList.contains('hidden')) closeContact();
+  });
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Sending…';
+    try {
+      await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' },
+      });
+    } catch (_) {}
+    btn.disabled = false;
+    btn.innerHTML = original;
+    contactWrap.classList.add('hidden');
+    contactSuccess.classList.remove('hidden');
+  });
+});
+</script>
+
+<!-- ───────────────────────── SIGN-UP MODAL ───────────────────────── -->
+<div id="signupModal" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 modal-backdrop" data-close></div>
+  <div class="relative h-full w-full flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="card-strong modal-card w-full max-w-xl my-6 sm:my-auto p-6 sm:p-8 relative">
+
+      <button data-close aria-label="Close" class="absolute top-4 right-4 w-9 h-9 rounded-full hairline bg-white hover:bg-paper-100 flex items-center justify-center text-ink-500 hover:text-ink-900 transition text-xl leading-none">×</button>
+
+      <!-- Step 1: pick path -->
+      <div id="signupStep1">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Get started</div>
+        <h3 class="mt-3 text-3xl font-medium tracking-[-0.03em] leading-[1.05] text-ink-900">I'm a <span class="text-ink-400 font-serif italic">…</span></h3>
+        <p class="mt-3 text-ink-600 text-[15px]">Pick what fits — we'll route you to the right team.</p>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" class="signup-path-btn" data-path="brand">
+            <span class="inline-flex w-9 h-9 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19l5-5 4 4 7-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 9h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="mt-3 text-lg font-medium text-ink-900">Brand</div>
+            <div class="mt-1 text-sm text-ink-500">Deposit your budget. Hit your ROAS with zero risk.</div>
+          </button>
+          <button type="button" class="signup-path-btn" data-path="creator">
+            <span class="inline-flex w-9 h-9 rounded-lg bg-brand-50 items-center justify-center text-brand-600">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <div class="mt-3 text-lg font-medium text-ink-900">Creator / Influencer</div>
+            <div class="mt-1 text-sm text-ink-500">Guaranteed retainer + market-leading commission.</div>
+          </button>
+        </div>
+
+        <p class="mt-6 text-xs text-ink-400">By continuing, you agree to be contacted by the Backed team.</p>
+      </div>
+
+      <!-- Step 2a: Brand form -->
+      <div id="signupStep2Brand" class="hidden">
+        <button type="button" data-back class="inline-flex items-center gap-1.5 text-sm text-ink-500 hover:text-ink-900 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <div class="mt-3 text-[11px] uppercase tracking-[0.22em] text-brand-600">Brand application</div>
+        <h3 class="mt-2 text-2xl font-medium tracking-[-0.03em] text-ink-900">Tell us about your campaign</h3>
+
+        <form id="brandForm" class="mt-6 space-y-4" action="https://formspree.io/f/xbdbgrpo" method="POST">
+          <input type="hidden" name="_subject" value="Backed — Brand application" />
+          <input type="hidden" name="form_type" value="Brand application" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="bName">Your name</label>
+              <input class="field-input" id="bName" name="name" type="text" required placeholder="Jane Brand" />
+            </div>
+            <div>
+              <label class="field-label" for="bEmail">Work email</label>
+              <input class="field-input" id="bEmail" name="email" type="email" required placeholder="jane@brand.com" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="bBrand">Brand name</label>
+            <input class="field-input" id="bBrand" name="brand_name" type="text" required placeholder="Acme Apparel" />
+          </div>
+          <div>
+            <label class="field-label" for="bIndustry">Industry</label>
+            <select class="field-select" id="bIndustry" name="industry" required>
+              <option value="">Select an industry</option>
+              <option>Sports</option>
+              <option>Beauty</option>
+              <option>Fashion</option>
+              <option>Luxury fashion</option>
+              <option>Outdoor</option>
+              <option>Food &amp; beverage</option>
+              <option>Hospitality</option>
+              <option>Tech / SaaS</option>
+              <option>Pet</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="bBudget">Campaign budget</label>
+            <select class="field-select" id="bBudget" name="campaign_budget" required>
+              <option value="">Select a budget range</option>
+              <option>£10k – £50k</option>
+              <option>£50k – £100k</option>
+              <option>£100k – £250k</option>
+              <option>£250k – £500k</option>
+              <option>£500k – £1M</option>
+              <option>£1M+</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="bTargetRoas">Target ROAS</label>
+              <select class="field-select" id="bTargetRoas" name="target_roas" required>
+                <option value="">Choose</option>
+                <option>2×</option><option>2.5×</option><option>3×</option><option>3.5×</option><option>4×</option><option>4.5×</option><option>5×</option><option>5.5×</option><option>6×</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="bMinRoas">Minimum acceptable ROAS</label>
+              <select class="field-select" id="bMinRoas" name="min_roas" required>
+                <option value="">Choose</option>
+                <option>1.5×</option><option>2×</option><option>2.5×</option><option>3×</option><option>3.5×</option><option>4×</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)] mt-2">
+            Submit application
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2b: Creator form -->
+      <div id="signupStep2Creator" class="hidden">
+        <button type="button" data-back class="inline-flex items-center gap-1.5 text-sm text-ink-500 hover:text-ink-900 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <div class="mt-3 text-[11px] uppercase tracking-[0.22em] text-brand-600">Creator application</div>
+        <h3 class="mt-2 text-2xl font-medium tracking-[-0.03em] text-ink-900">Tell us about you</h3>
+
+        <form id="creatorForm" class="mt-6 space-y-4" action="https://formspree.io/f/xbdbgrpo" method="POST">
+          <input type="hidden" name="_subject" value="Backed — Creator application" />
+          <input type="hidden" name="form_type" value="Creator application" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="cName">Your name</label>
+              <input class="field-input" id="cName" name="name" type="text" required placeholder="Alex Creator" />
+            </div>
+            <div>
+              <label class="field-label" for="cEmail">Email</label>
+              <input class="field-input" id="cEmail" name="email" type="email" required placeholder="you@example.com" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="cHandle">Social handle</label>
+            <input class="field-input" id="cHandle" name="handle" type="text" required placeholder="@yourhandle" />
+          </div>
+          <div>
+            <label class="field-label" for="cNiche">Primary niche</label>
+            <select class="field-select" id="cNiche" name="niche" required>
+              <option value="">Select a niche</option>
+              <option>Sport / fitness</option>
+              <option>Beauty</option>
+              <option>Fashion</option>
+              <option>Luxury fashion</option>
+              <option>Cooking / food</option>
+              <option>Travel</option>
+              <option>Outdoor / adventure</option>
+              <option>Tech / productivity</option>
+              <option>Lifestyle</option>
+              <option>Pet</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="cSocial">Primary social link</label>
+            <input class="field-input" id="cSocial" name="social_link" type="url" required placeholder="https://instagram.com/yourhandle" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="cFollowers">Total followers</label>
+              <select class="field-select" id="cFollowers" name="followers" required>
+                <option value="">Choose</option>
+                <option>0 – 10k</option>
+                <option>10k – 50k</option>
+                <option>50k – 100k</option>
+                <option>100k – 500k</option>
+                <option>500k – 1M</option>
+                <option>1M+</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="cMinComm">Minimum commission</label>
+              <select class="field-select" id="cMinComm" name="min_commission" required>
+                <option value="">Choose</option>
+                <option>10%</option><option>15%</option><option>20%</option><option>25%</option><option>30%</option><option>35%</option><option>40%</option><option>50%</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)] mt-2">
+            Submit application
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div id="signupSuccess" class="hidden text-center py-6">
+        <span class="inline-flex w-14 h-14 rounded-full bg-brand-50 items-center justify-center text-brand-600 mx-auto">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3 class="mt-5 text-2xl font-medium tracking-[-0.03em] text-ink-900">Thanks — we'll be in touch.</h3>
+        <p class="mt-3 text-ink-600 text-[15px] max-w-sm mx-auto">Our team will review your application and reach out within 24 hours.</p>
+        <button type="button" data-close class="mt-6 inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────── CONTACT MODAL (Talk to founders) ───────────────────────── -->
+<div id="contactModal" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 modal-backdrop" data-close-contact></div>
+  <div class="relative h-full w-full flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="card-strong modal-card w-full max-w-lg my-6 sm:my-auto p-6 sm:p-8 relative">
+
+      <button data-close-contact aria-label="Close" class="absolute top-4 right-4 w-9 h-9 rounded-full hairline bg-white hover:bg-paper-100 flex items-center justify-center text-ink-500 hover:text-ink-900 transition text-xl leading-none">×</button>
+
+      <div id="contactForm-wrap">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Direct line</div>
+        <h3 class="mt-3 text-3xl font-medium tracking-[-0.03em] leading-[1.05] text-ink-900">Talk to the founders</h3>
+        <p class="mt-3 text-ink-600 text-[15px]">Drop a note and we'll get back to you within 24h.</p>
+
+        <form id="contactForm" class="mt-6 space-y-4" action="https://formspree.io/f/xbdbgrpo" method="POST">
+          <input type="hidden" name="_subject" value="Backed — Founders contact" />
+          <input type="hidden" name="form_type" value="Founders contact" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="ctName">Your name</label>
+              <input class="field-input" id="ctName" name="name" type="text" required placeholder="Jane Smith" />
+            </div>
+            <div>
+              <label class="field-label" for="ctEmail">Email</label>
+              <input class="field-input" id="ctEmail" name="email" type="email" required placeholder="you@example.com" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="ctCompany">Company / handle <span class="text-ink-400 normal-case tracking-normal">(optional)</span></label>
+            <input class="field-input" id="ctCompany" name="company" type="text" placeholder="Acme Co. / @yourhandle" />
+          </div>
+          <div>
+            <label class="field-label" for="ctMessage">Message</label>
+            <textarea class="field-input" id="ctMessage" name="message" rows="4" required placeholder="What would you like to chat about?" style="resize:vertical; min-height:90px;"></textarea>
+          </div>
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)] mt-2">
+            Send message
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <div id="contactSuccess" class="hidden text-center py-6">
+        <span class="inline-flex w-14 h-14 rounded-full bg-brand-50 items-center justify-center text-brand-600 mx-auto">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3 class="mt-5 text-2xl font-medium tracking-[-0.03em] text-ink-900">Message sent.</h3>
+        <p class="mt-3 text-ink-600 text-[15px] max-w-sm mx-auto">A founder will reply directly within 24h.</p>
+        <button type="button" data-close-contact class="mt-6 inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────── SIGN-IN MODAL ───────────────────────── -->
+<div id="signinModal" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 modal-backdrop" data-close-signin></div>
+  <div class="relative h-full w-full flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="card-strong modal-card w-full max-w-md my-6 sm:my-auto p-6 sm:p-8 relative">
+
+      <button data-close-signin aria-label="Close" class="absolute top-4 right-4 w-9 h-9 rounded-full hairline bg-white hover:bg-paper-100 flex items-center justify-center text-ink-500 hover:text-ink-900 transition text-xl leading-none">×</button>
+
+      <div id="signinForm-wrap">
+        <div class="text-[11px] uppercase tracking-[0.22em] text-brand-600">Welcome back</div>
+        <h3 class="mt-3 text-3xl font-medium tracking-[-0.03em] leading-[1.05] text-ink-900">Sign in</h3>
+        <p class="mt-3 text-ink-600 text-[15px]">Access your dashboard, campaigns, and payouts.</p>
+
+        <form id="signinForm" class="mt-6 space-y-4">
+          <div>
+            <label class="field-label" for="siEmail">Email</label>
+            <input class="field-input" id="siEmail" type="email" required placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="field-label mb-0" for="siPassword">Password</label>
+              <a href="#" class="text-[11px] text-brand-600 hover:text-brand-700 font-medium">Forgot?</a>
+            </div>
+            <input class="field-input" id="siPassword" type="password" required placeholder="••••••••" autocomplete="current-password" minlength="6" />
+          </div>
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)] mt-2">
+            Sign in
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+
+        <p class="mt-6 text-center text-sm text-ink-500">
+          New here? <a href="#" id="switchToSignup" class="text-brand-600 hover:text-brand-700 font-medium">Apply for access →</a>
+        </p>
+      </div>
+
+      <div id="signinSuccess" class="hidden text-center py-6">
+        <span class="inline-flex w-14 h-14 rounded-full bg-brand-50 items-center justify-center text-brand-600 mx-auto">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3 class="mt-5 text-2xl font-medium tracking-[-0.03em] text-ink-900">Signed in.</h3>
+        <p class="mt-3 text-ink-600 text-[15px] max-w-sm mx-auto">Redirecting you to your dashboard…</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
