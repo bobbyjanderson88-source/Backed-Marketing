@@ -495,8 +495,14 @@
         <div class="mt-2 text-base sm:text-lg font-medium tracking-tight text-ink-900 leading-tight">Leading commissions <span class="text-brand-600">+ fixed retainers</span></div>
       </div>
       <div class="card p-4 sm:p-5">
-        <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">Platform fees</div>
-        <div class="mt-2 text-2xl sm:text-3xl font-medium tracking-tight text-brand-600">Zero</div>
+        <div class="text-[11px] uppercase tracking-[0.18em] text-ink-400">
+          <span class="sm:hidden">Platform fees</span>
+          <span class="hidden sm:inline">Capital at risk</span>
+        </div>
+        <div class="mt-2 text-2xl sm:text-3xl font-medium tracking-tight text-brand-600">
+          <span class="sm:hidden">Zero</span>
+          <span class="hidden sm:inline tabular-nums">£0</span>
+        </div>
       </div>
     </div>
   </div>
@@ -658,7 +664,7 @@
                   <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Revenue target</div>
                 </div>
                 <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="brandRevenueTarget">£300,000</div>
-                <p class="mt-2 text-xs text-ink-500 leading-snug"><span id="brandRoasLabel">3</span>× ROAS</p>
+                <p class="mt-2 text-xs text-ink-500 leading-snug"><span id="brandRoasLabel">3</span>× ROAS<span class="hidden sm:inline"> — Budget fully utilised as verified sales hit.</span></p>
               </div>
             </div>
 
@@ -670,7 +676,8 @@
                 <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Effective commission</div>
               </div>
               <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="brandCommission">33.33%</div>
-              <p class="mt-2 text-xs text-ink-500 leading-snug">% of sales</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug sm:hidden">% of sales</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug hidden sm:block">Math: 1 ÷ ROAS. Sales beyond target are pure margin.</p>
             </div>
 
             <div class="card p-4 bg-brand-50/60">
@@ -681,7 +688,8 @@
                 <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Worst case</div>
               </div>
               <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-brand-600"><span id="brandWorstAmount">£100,000</span></div>
-              <p class="mt-2 text-xs text-ink-500 leading-snug">Budget returned to brand</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug sm:hidden">Budget returned to brand</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug hidden sm:block">Campaign flops — budget returned to your bank.</p>
             </div>
 
             <div class="card p-4">
@@ -692,7 +700,8 @@
                 <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Best case</div>
               </div>
               <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900"><span id="brandBestAmount">£300,000</span></div>
-              <p class="mt-2 text-xs text-ink-500 leading-snug">Budget utilized</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug sm:hidden">Budget utilized</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug hidden sm:block">Budget fully utilised — verified revenue generated. Top up and run it again.</p>
             </div>
           </div>
         </div>
@@ -714,7 +723,8 @@
                   <span class="text-3xl sm:text-4xl font-medium tracking-[-0.03em] tabular-nums text-brand-600" id="creatorRetainerTotal">£2,000</span>
                   <span class="text-ink-400 text-sm">total</span>
                 </div>
-                <p class="mt-4 text-sm text-ink-500 leading-snug">Paid day 1 of campaign start</p>
+                <p class="mt-4 text-sm text-ink-500 leading-snug sm:hidden">Paid day 1 of campaign start</p>
+                <p class="mt-4 text-sm text-ink-500 leading-snug hidden sm:block">Paid day 1 of campaign start, sale commission settle daily.</p>
               </div>
             </div>
 
@@ -726,7 +736,8 @@
                 <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Total earnable commission</div>
               </div>
               <div class="mt-5 text-3xl sm:text-4xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="creatorBounty">£100,000</div>
-              <p class="mt-4 text-sm text-ink-500 leading-snug">Unlocks sale by sale</p>
+              <p class="mt-4 text-sm text-ink-500 leading-snug sm:hidden">Unlocks sale by sale</p>
+              <p class="mt-4 text-sm text-ink-500 leading-snug hidden sm:block">Secured Budget — yours to unlock, sale by sale.</p>
             </div>
 
             <div class="card p-6 bg-brand-50/60">
@@ -737,7 +748,8 @@
                 <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Total earnable</div>
               </div>
               <div class="mt-5 text-3xl sm:text-4xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="creatorGrant">£102,000</div>
-              <p class="mt-4 text-sm text-ink-500 leading-snug">Retainer + possible commissions</p>
+              <p class="mt-4 text-sm text-ink-500 leading-snug sm:hidden">Retainer + possible commissions</p>
+              <p class="mt-4 text-sm text-ink-500 leading-snug hidden sm:block">Market leading fee structure — no platform fees, all brand spend passed to the creator.</p>
             </div>
 
             <div class="card p-6">
@@ -747,8 +759,12 @@
                 </span>
                 <div class="text-[12px] uppercase tracking-[0.16em] text-ink-500">Payout mechanic</div>
               </div>
-              <div class="mt-5 text-2xl sm:text-3xl font-medium tracking-[-0.02em] text-ink-900 leading-tight">Instant Sale Monitoring</div>
-              <p class="mt-4 text-sm text-ink-500 leading-snug">verified sale commissions paid monthly</p>
+              <div class="mt-5 text-2xl sm:text-3xl font-medium tracking-[-0.02em] text-ink-900 leading-tight">
+                <span class="sm:hidden">Instant Sale Monitoring</span>
+                <span class="hidden sm:inline">Instant API sales monitoring</span>
+              </div>
+              <p class="mt-4 text-sm text-ink-500 leading-snug sm:hidden">verified sale commissions paid monthly</p>
+              <p class="mt-4 text-sm text-ink-500 leading-snug hidden sm:block">Verified sale commissions paid monthly.</p>
             </div>
           </div>
 
