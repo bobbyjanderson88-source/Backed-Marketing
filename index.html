@@ -443,7 +443,8 @@
     <div class="reveal flex items-center gap-2.5 text-[11px] uppercase tracking-[0.22em] text-ink-500">
       <span class="inline-flex items-center gap-1.5 hairline bg-white/70 rounded-full px-2.5 py-1">
         <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
-        100% of brand spend goes to creators
+        <span class="sm:hidden">100% brand spend to creators</span>
+        <span class="hidden sm:inline">100% of brand spend goes to creators</span>
       </span>
       <span class="hidden sm:inline">Invite only</span>
     </div>
@@ -466,11 +467,15 @@
     </p>
 
     <div class="reveal mt-5 flex flex-col sm:flex-row gap-3">
-      <a href="#" data-signup class="group inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3.5 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
+      <a href="#" data-signup class="hidden sm:inline-flex group items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-3.5 rounded-xl font-medium tracking-tight transition shadow-[0_10px_28px_-10px_rgba(38,79,203,0.55)]">
         Interested?
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="transition group-hover:translate-x-0.5"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#live" class="inline-flex items-center justify-center gap-2 hairline bg-white/70 hover:bg-white px-5 py-3.5 rounded-xl font-medium tracking-tight text-ink-800 transition">
+      <a href="#engine" class="sm:hidden inline-flex items-center justify-center gap-2 hairline bg-white/70 hover:bg-white px-5 py-3.5 rounded-xl font-medium tracking-tight text-ink-800 transition">
+        See how it works
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#live" class="hidden sm:inline-flex items-center justify-center gap-2 hairline bg-white/70 hover:bg-white px-5 py-3.5 rounded-xl font-medium tracking-tight text-ink-800 transition">
         See live campaigns
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -653,7 +658,7 @@
                   <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Revenue target</div>
                 </div>
                 <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="brandRevenueTarget">£300,000</div>
-                <p class="mt-2 text-xs text-ink-500 leading-snug"><span id="brandRoasLabel">3</span>× ROAS — Budget fully utilised as verified sales hit.</p>
+                <p class="mt-2 text-xs text-ink-500 leading-snug"><span id="brandRoasLabel">3</span>× ROAS</p>
               </div>
             </div>
 
@@ -665,7 +670,7 @@
                 <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Effective commission</div>
               </div>
               <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900" id="brandCommission">33.33%</div>
-              <p class="mt-2 text-xs text-ink-500 leading-snug">Math: 1 ÷ ROAS. Sales beyond target are pure margin.</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug">% of sales</p>
             </div>
 
             <div class="card p-4 bg-brand-50/60">
@@ -676,7 +681,7 @@
                 <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Worst case</div>
               </div>
               <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-brand-600"><span id="brandWorstAmount">£100,000</span></div>
-              <p class="mt-2 text-xs text-ink-500 leading-snug">Campaign flops — budget returned to your bank.</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug">Budget returned to brand</p>
             </div>
 
             <div class="card p-4">
@@ -687,7 +692,7 @@
                 <div class="text-[11px] uppercase tracking-[0.16em] text-ink-500">Best case</div>
               </div>
               <div class="mt-3 text-2xl sm:text-3xl font-medium tracking-[-0.03em] tabular-nums text-ink-900"><span id="brandBestAmount">£300,000</span></div>
-              <p class="mt-2 text-xs text-ink-500 leading-snug">Budget fully utilised — verified revenue generated. Top up and run it again.</p>
+              <p class="mt-2 text-xs text-ink-500 leading-snug">Budget utilized</p>
             </div>
           </div>
         </div>
@@ -831,7 +836,7 @@
 </section>
 
 <!-- ───────────────────────── MARKETPLACE ───────────────────────── -->
-<section id="live" class="relative">
+<section id="live" class="relative hidden sm:block">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 py-4 sm:py-6">
 
     <div class="reveal flex items-end justify-between flex-wrap gap-3 mb-3">
@@ -860,7 +865,7 @@
         Swipe to browse
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="mp-scroll flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-px-5 -mx-5 md:mx-0 px-5 md:px-0 md:grid-cols-2 lg:grid-cols-3 gap-3 [&>article]:snap-start [&>article]:shrink-0 [&>article]:w-[85vw] [&>article]:max-w-[340px] md:[&>article]:w-auto md:[&>article]:max-w-none">
+      <div class="mp-scroll flex md:grid overflow-x-auto md:overflow-visible snap-x md:snap-none scroll-px-5 -mx-5 md:mx-0 px-5 md:px-0 md:grid-cols-2 lg:grid-cols-3 gap-3 [&>article]:snap-start [&>article]:shrink-0 [&>article]:w-[72vw] [&>article]:max-w-[300px] md:[&>article]:w-auto md:[&>article]:max-w-none">
 
         <article class="card p-3 hover:shadow-[0_24px_48px_-24px_rgba(38,79,203,0.22)] transition">
           <div class="flex items-center justify-between">
@@ -1420,7 +1425,7 @@
 
 
 <!-- ───────────────────────── SIGN-UP BONUS ───────────────────────── -->
-<section id="bonus" class="relative">
+<section id="bonus" class="relative hidden sm:block">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 py-6 sm:py-8">
 
     <div class="reveal flex items-end justify-between flex-wrap gap-3 mb-5">
